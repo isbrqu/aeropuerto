@@ -2,58 +2,68 @@ package conjuntistas.ArbolAVL;
 import java.lang.Math;
 
 public class Nodo {
-    
-    private int altura;
-    private Comparable elemento;
-    private Nodo izquierdo;
-    private Nodo derecho;
 
-    public Nodo(Comparable elemento, Nodo izquierdo, Nodo derecho) {
-        this.elemento = elemento;
-        this.izquierdo = izquierdo;
-        this.derecho = derecho;
-        recalcularAltura();
-    }
+  private int altura;
+  private Comparable elemento;
+  private Nodo izquierdo;
+  private Nodo derecho;
 
-    public Nodo(Comparable elemento) {
-        this(elemento, null, null);
-    }
+  public Nodo(Comparable elemento, Nodo izquierdo, Nodo derecho) {
+    this.elemento = elemento;
+    this.izquierdo = izquierdo;
+    this.derecho = derecho;
+    this.altura = 0;
+    // recalcularAltura();
+  }
 
-    public int getAltura() {
-        return this.altura;
-    }
+  public Nodo(Comparable elemento) {
+    this(elemento, null, null);
+  }
 
-    public void recalcularAltura() {
-        // en caso de no tener hijos se dará la cuenta -1 + 1 = 0
-        this.altura = Math.max((this.izquierdo == null) ? -1 : this.izquierdo.altura, (this.derecho == null) ? -1 : this.derecho.altura) + 1;
-    }
+  public int getAltura() {
+    return this.altura;
+  }
 
-    public Comparable getElemento() {
-        return this.elemento;
-    }
+  public void recalcularAltura() {
+    // en caso de no tener hijos se dará la cuenta -1 + 1 = 0
+    int izquierdo = (this.izquierdo == null) ? -1 : this.izquierdo.altura;
+    int derecho = (this.derecho == null) ? -1 : this.derecho.altura;
+    this.altura = Math.max(izquierdo, derecho) + 1;
+  }
 
-    public void setElemento(Comparable elemento) {
-        this.elemento = elemento;
-    }
+  public Comparable getElemento() {
+    return this.elemento;
+  }
 
-    public Nodo getIzquierdo() {
-        return this.izquierdo;
-    }
+  public void setElemento(Comparable elemento) {
+    this.elemento = elemento;
+  }
 
-    public void setIzquierdo(Nodo izquierdo) {
-        this.izquierdo = izquierdo;
-    }
+  public Nodo getIzquierdo() {
+    return this.izquierdo;
+  }
 
-    public Nodo getDerecho() {
-        return this.derecho;
-    }
+  public void setIzquierdo(Nodo izquierdo) {
+    this.izquierdo = izquierdo;
+  }
 
-    public void setDerecho(Nodo derecho) {
-        this.derecho = derecho;
-    }
+  public Nodo getDerecho() {
+    return this.derecho;
+  }
 
-    public int calcularBalance() {
-        return ((this.izquierdo == null) ? -1 : this.izquierdo.altura) - ((this.derecho == null) ? -1 : this.derecho.altura);
-    }
+  public void setDerecho(Nodo derecho) {
+    this.derecho = derecho;
+  }
+
+  public int calcularBalance() {
+    int izquierdo = (this.izquierdo == null) ? -1 : this.izquierdo.altura;
+    int derecho = (this.derecho == null) ? -1 : this.derecho.altura;
+    int balance = izquierdo - derecho;
+    return balance;
+  }
+
+  public boolean noEstaBalanceado() {
+    return Math.abs(calcularBalance()) > 1;
+  }
 
 }

@@ -48,6 +48,10 @@ public class ArbolAVL {
         else
           exito = insertarAux(derecho, elemento);
       }
+      if (exito) {
+        nodo.recalcularAltura();
+        if (nodo.noEstaBalanceado())
+          System.out.println("Balancear " + contenido);
       }
     }
     return exito;

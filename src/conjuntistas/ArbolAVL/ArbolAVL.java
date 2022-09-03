@@ -37,16 +37,17 @@ public class ArbolAVL {
       // determina si elemento es menor o mayor que contenido
       if (elemento.compareTo(contenido) < 0) {
         // Si tiene HI baja a la izquierda, sino agrega elemento
-        if (izquierdo != null)
-          exito = insertarAux(izquierdo, elemento);
-        else
+        if (izquierdo == null)
           nodo.setIzquierdo(new Nodo(elemento));
+        else
+          exito = insertarAux(izquierdo, elemento);
       } else {
         // Si tiene HD baja a la derecha, sino agrega elemento
-        if (derecho != null)
-          exito = insertarAux(derecho, elemento);
-        else
+        if (derecho == null)
           nodo.setDerecho(new Nodo(elemento));
+        else
+          exito = insertarAux(derecho, elemento);
+      }
       }
     }
     return exito;

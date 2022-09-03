@@ -4,7 +4,7 @@ import lineales.dinamicas.Lista;
 
 public class ArbolAVL {
 
-  private NodoAVL raiz;
+  private Nodo raiz;
 
   public ArbolAVL() {
     this.raiz = null;
@@ -17,18 +17,18 @@ public class ArbolAVL {
   public boolean insertar(Comparable elemento) {
     boolean exito = true;
     if (this.raiz == null) {
-      this.raiz = new NodoAVL(elemento);
+      this.raiz = new Nodo(elemento);
     } else {
       exito = insertarAux(this.raiz, elemento);
     }
     return exito;
   }
 
-  public boolean insertarAux(NodoAVL nodo, Comparable elemento) {
+  public boolean insertarAux(Nodo nodo, Comparable elemento) {
     // precondicion: nodo no es nulo
     boolean exito = true;
-    NodoAVL izquierdo = nodo.getIzquierdo();
-    NodoAVL derecho = nodo.getDerecho();
+    Nodo izquierdo = nodo.getIzquierdo();
+    Nodo derecho = nodo.getDerecho();
     Comparable contenido = nodo.getElemento();
     if (elemento.equals(contenido)) {
       // reportar error: elemento repetido
@@ -40,7 +40,7 @@ public class ArbolAVL {
         if (izquierdo != null) {
           exito = insertarAux(izquierdo, elemento);
         } else {
-          nodo.setIzquierdo(new NodoAVL(elemento));
+          nodo.setIzquierdo(new Nodo(elemento));
         }
       } else {
         // elemento es mayor que contenido.
@@ -48,7 +48,7 @@ public class ArbolAVL {
         if (derecho != null) {
           exito = insertarAux(derecho, elemento);
         } else {
-          nodo.setDerecho(new NodoAVL(elemento));
+          nodo.setDerecho(new Nodo(elemento));
         }
       }
     }
@@ -64,7 +64,7 @@ public class ArbolAVL {
   }
 
   // baja hasta encontrar el nodo
-  private boolean eliminarAux(NodoAVL nodo, NodoAVL padre, Comparable x) {
+  private boolean eliminarAux(Nodo nodo, Nodo padre, Comparable x) {
     boolean exito = false;
     if (nodo != null) {
       Comparable elemento = nodo.getElemento();
@@ -95,9 +95,9 @@ public class ArbolAVL {
   }
 
   // determina el tipo de eliminacion
-  private boolean eliminarNodo(NodoAVL nodo, NodoAVL padre) {
-    NodoAVL izquierdo = nodo.getIzquierdo();
-    NodoAVL derecho = nodo.getDerecho();
+  private boolean eliminarNodo(Nodo nodo, Nodo padre) {
+    Nodo izquierdo = nodo.getIzquierdo();
+    Nodo derecho = nodo.getDerecho();
     // determino el caso a eliminar
     if (izquierdo == null && derecho == null) {
       // elimino un nodo hoja (sin hijos)
@@ -113,7 +113,7 @@ public class ArbolAVL {
   }
 
   // caso 1
-  private void eliminarHoja(NodoAVL hijo, NodoAVL padre) {
+  private void eliminarHoja(Nodo hijo, Nodo padre) {
     if (padre == null) {
       // caso especial un unico elemento
       this.raiz = null;
@@ -125,9 +125,9 @@ public class ArbolAVL {
   }
 
   // caso 2
-  private void eliminarConUnHijo(NodoAVL hijo, NodoAVL padre) {
-    NodoAVL izquierdo = hijo.getIzquierdo();
-    NodoAVL derecho = hijo.getDerecho();
+  private void eliminarConUnHijo(Nodo hijo, Nodo padre) {
+    Nodo izquierdo = hijo.getIzquierdo();
+    Nodo derecho = hijo.getDerecho();
     if (padre == null) {
       // caso especial de la raiz con un hijo
       this.raiz = (izquierdo != null) ? izquierdo : derecho;
@@ -139,9 +139,9 @@ public class ArbolAVL {
   }
 
   // caso 3
-  private void eliminarConDosHijos(NodoAVL nodo) {
-    NodoAVL candidato = nodo.getDerecho();
-    NodoAVL padreCandidato = nodo;
+  private void eliminarConDosHijos(Nodo nodo) {
+    Nodo candidato = nodo.getDerecho();
+    Nodo padreCandidato = nodo;
     // obtengo el menor de los mayores (candidato)
     while (candidato.getIzquierdo() != null) {
       padreCandidato = candidato;
@@ -150,7 +150,7 @@ public class ArbolAVL {
     // remplazo el valor del nodo a eliminar por el valor del candidato
     nodo.setElemento(candidato.getElemento());
     // hijo pude ser null o no
-    NodoAVL hijoCandidato = candidato.getDerecho();
+    Nodo hijoCandidato = candidato.getDerecho();
     // elimina el nodo
     // el candidato es el hijo derecho del nodo a eliminar?
     if (nodo.getDerecho() == candidato) {
@@ -162,7 +162,7 @@ public class ArbolAVL {
     }
   }
 
-  private void balancear(NodoAVL nodo) {
+  private void balancear(Nodo nodo) {
     int balancePadre = nodo.calcularBalance();
     int balanceHijo;
     if (balancePadre > 1) {
@@ -186,11 +186,11 @@ public class ArbolAVL {
     }
   }
 
-  private NodoAVL rotarIzquierda(NodoAVL nodo) {
+  private Nodo rotarIzquierda(Nodo nodo) {
     // pivot
-    NodoAVL hijoDerecho = nodo.getDerecho();
+    Nodo hijoDerecho = nodo.getDerecho();
     // temporal
-    NodoAVL hijoIzquierdo = hijoDerecho.getIzquierdo();
+    Nodo hijoIzquierdo = hijoDerecho.getIzquierdo();
     hijoDerecho.setIzquierdo(nodo);
     nodo.setDerecho(hijoIzquierdo);
     // recalculo altura de nodo y su "hijo"
@@ -199,11 +199,11 @@ public class ArbolAVL {
     return hijoDerecho;
   }
 
-  private NodoAVL rotarDerecha(NodoAVL nodo) {
+  private Nodo rotarDerecha(Nodo nodo) {
     // pivot
-    NodoAVL hijoIzquierdo = nodo.getIzquierdo();
+    Nodo hijoIzquierdo = nodo.getIzquierdo();
     // temporal
-    NodoAVL hijoDerecho = hijoIzquierdo.getDerecho();
+    Nodo hijoDerecho = hijoIzquierdo.getDerecho();
     hijoIzquierdo.setDerecho(nodo);
     nodo.setIzquierdo(hijoDerecho);
     // recalculo altura del nodo y su "hijo"
@@ -212,12 +212,12 @@ public class ArbolAVL {
     return hijoIzquierdo;
   }
 
-  private NodoAVL rotarIzquierdaDerecha(NodoAVL nodo) {
+  private Nodo rotarIzquierdaDerecha(Nodo nodo) {
     nodo.setIzquierdo(rotarIzquierda(nodo.getIzquierdo()));
     return rotarDerecha(nodo);
   }
 
-  private NodoAVL rotarDerechaIzquierda(NodoAVL nodo) {
+  private Nodo rotarDerechaIzquierda(Nodo nodo) {
     nodo.setDerecho(rotarDerecha(nodo.getDerecho()));
     return rotarIzquierda(nodo);
   }
@@ -228,7 +228,7 @@ public class ArbolAVL {
     return lista;
   }
 
-  public void listarAux(NodoAVL nodo, Lista lista) {
+  public void listarAux(Nodo nodo, Lista lista) {
     if (nodo != null) {
       listarAux(nodo.getDerecho(), lista);
       lista.insertar(nodo.getElemento(), 1);
@@ -238,7 +238,7 @@ public class ArbolAVL {
 
   public boolean pertenece(Comparable x) {
     boolean pertenece = false;
-    NodoAVL nodo = this.raiz;
+    Nodo nodo = this.raiz;
     Comparable elemento;
     while (nodo != null && !pertenece) {
       elemento = nodo.getElemento();
@@ -255,7 +255,7 @@ public class ArbolAVL {
 
   public Comparable minimoElem() {
     Comparable elemento = null;
-    NodoAVL nodo = this.raiz;
+    Nodo nodo = this.raiz;
     // bajada por la izquierda
     while (nodo != null) {
       elemento = nodo.getElemento();
@@ -266,7 +266,7 @@ public class ArbolAVL {
 
   public Comparable maximoElem() {
     Comparable elemento = null;
-    NodoAVL nodo = this.raiz;
+    Nodo nodo = this.raiz;
     // bajada por la derecha
     while (nodo != null) {
       elemento = nodo.getElemento();
@@ -281,7 +281,7 @@ public class ArbolAVL {
     return lista;
   }
 
-  private void listarRangoAux(NodoAVL nodo, Lista lista, int minimo, int maximo) {
+  private void listarRangoAux(Nodo nodo, Lista lista, int minimo, int maximo) {
     if (nodo != null) {
       Comparable elemento = nodo.getElemento();
       if (elemento.compareTo(maximo) < 0)
@@ -306,11 +306,11 @@ public class ArbolAVL {
   }
 
   // copiado de arbol binario
-  private String toStringAux(NodoAVL nodo, String s) {
+  private String toStringAux(Nodo nodo, String s) {
     if (nodo != null) {
       s += "\n" + nodo.getElemento() + "\t";
-      NodoAVL izquierdo = nodo.getIzquierdo();
-      NodoAVL derecho = nodo.getDerecho();
+      Nodo izquierdo = nodo.getIzquierdo();
+      Nodo derecho = nodo.getDerecho();
       s += "HI: " + ((izquierdo != null) ? izquierdo.getElemento() : "-") + "\t";
       s += "HD: " + ((derecho != null) ? derecho.getElemento() : "-");
       s = toStringAux(nodo.getIzquierdo(), s);

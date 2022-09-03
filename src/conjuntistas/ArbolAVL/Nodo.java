@@ -1,21 +1,21 @@
 package conjuntistas.ArbolAVL;
 import java.lang.Math;
 
-public class NodoAVL {
+public class Nodo {
     
     private int altura;
     private Comparable elemento;
-    private NodoAVL izquierdo;
-    private NodoAVL derecho;
+    private Nodo izquierdo;
+    private Nodo derecho;
 
-    public NodoAVL(Comparable elemento, NodoAVL izquierdo, NodoAVL derecho) {
+    public Nodo(Comparable elemento, Nodo izquierdo, Nodo derecho) {
         this.elemento = elemento;
         this.izquierdo = izquierdo;
         this.derecho = derecho;
         recalcularAltura();
     }
 
-    public NodoAVL(Comparable elemento) {
+    public Nodo(Comparable elemento) {
         this(elemento, null, null);
     }
 
@@ -36,19 +36,19 @@ public class NodoAVL {
         this.elemento = elemento;
     }
 
-    public NodoAVL getIzquierdo() {
+    public Nodo getIzquierdo() {
         return this.izquierdo;
     }
 
-    public void setIzquierdo(NodoAVL izquierdo) {
+    public void setIzquierdo(Nodo izquierdo) {
         this.izquierdo = izquierdo;
     }
 
-    public NodoAVL getDerecho() {
+    public Nodo getDerecho() {
         return this.derecho;
     }
 
-    public void setDerecho(NodoAVL derecho) {
+    public void setDerecho(Nodo derecho) {
         this.derecho = derecho;
     }
 

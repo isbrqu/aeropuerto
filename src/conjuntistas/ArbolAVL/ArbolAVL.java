@@ -34,27 +34,20 @@ public class ArbolAVL {
       // reportar error: elemento repetido
       exito = false;
     } else {
+      // determina si elemento es menor o mayor que contenido
       if (elemento.compareTo(contenido) < 0) {
-        // elemento es menor que contenido.
         // Si tiene HI baja a la izquierda, sino agrega elemento
-        if (izquierdo != null) {
+        if (izquierdo != null)
           exito = insertarAux(izquierdo, elemento);
-        } else {
+        else
           nodo.setIzquierdo(new Nodo(elemento));
-        }
       } else {
-        // elemento es mayor que contenido.
         // Si tiene HD baja a la derecha, sino agrega elemento
-        if (derecho != null) {
+        if (derecho != null)
           exito = insertarAux(derecho, elemento);
-        } else {
+        else
           nodo.setDerecho(new Nodo(elemento));
-        }
       }
-    }
-    if (exito) {
-      nodo.recalcularAltura();
-      balancear(nodo);
     }
     return exito;
   }
@@ -295,9 +288,8 @@ public class ArbolAVL {
 
   // utilidad, no prestar antencion
   public void llenar(int[] num) {
-    for (int i = 0; i < num.length; i++) {
-      insertar(num[i]);
-    }
+    for (int n: num)
+      this.insertar(n);
   }
 
   // copiado de arbol binario

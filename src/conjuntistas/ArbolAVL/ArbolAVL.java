@@ -161,27 +161,7 @@ public class ArbolAVL {
   }
 
   private void balancear(Nodo nodo) {
-    int balancePadre = nodo.calcularBalance();
-    int balanceHijo;
-    if (balancePadre > 1) {
-      // desbalanceado a la izquierda
-      balanceHijo = nodo.getIzquierdo().calcularBalance();
-      // determino si aplico rotacion simple o doble
-      if (balanceHijo >= 0) {
-        rotarDerecha(nodo);
-      } else {
-        rotarIzquierdaDerecha(nodo);
-      }
-    } else if (balancePadre < -1) {
-      // desbalanceado a la derecha
-      balanceHijo = nodo.getDerecho().calcularBalance();
-      // determino si aplico rotacion simple o doble
-      if (balanceHijo <= 0) {
-        rotarIzquierda(nodo);
-      } else {
-        rotarDerechaIzquierda(nodo);
-      }
-    }
+    // ...
   }
 
   private Nodo rotarIzquierda(Nodo nodo) {

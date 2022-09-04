@@ -50,8 +50,11 @@ public class ArbolAVL {
       }
       if (exito) {
         nodo.recalcularAltura();
-        if (nodo.noEstaBalanceado())
-          balancear(nodo);
+        if (nodo.noEstaBalanceado()) {
+          padre = balancear(nodo);
+          if (nodo == this.raiz)
+            this.raiz = padre;
+        }
       }
     }
     return exito;
@@ -179,8 +182,6 @@ public class ArbolAVL {
     // recalculo altura de nodo y su "hijo"
     nodo.recalcularAltura();
     derecho.recalcularAltura();
-    if (nodo == this.raiz)
-      this.raiz = derecho;
     return derecho;
   }
 

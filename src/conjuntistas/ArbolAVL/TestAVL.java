@@ -27,20 +27,4 @@ public class TestAVL {
     print(arbol);
   }
 
-  // public static void rotarDerecha() {
-  //   print("TEST SET 2 - Rotacion derecha");
-  //   ArbolAVL arbol = new ArbolAVL();
-  //   int[] num = {9, 5, 1};
-  //   arbol.llenar(num);
-  //   print(arbol);
-  // }
-
-  // public static void rotarDerechaIzquierda() {
-  //   print("TEST SET n - Rotacion derecha-izquierda");
-  //   ArbolAVL arbol = new ArbolAVL();
-  //   int[] num = {1, 5, 9, 7, 9, 8};
-  //   arbol.llenar(num);
-  //   print(arbol);
-  // }
-
 }

@@ -55,7 +55,7 @@ public class Nodo {
     this.derecho = derecho;
   }
 
-  public int calcularBalance() {
+  public int getBalance() {
     int izquierdo = (this.izquierdo == null) ? -1 : this.izquierdo.altura;
     int derecho = (this.derecho == null) ? -1 : this.derecho.altura;
     int balance = izquierdo - derecho;
@@ -63,7 +63,7 @@ public class Nodo {
   }
 
   public boolean noEstaBalanceado() {
-    return Math.abs(calcularBalance()) > 1;
+    return Math.abs(getBalance()) > 1;
   }
 
 }

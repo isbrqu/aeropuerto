@@ -26,13 +26,13 @@ public class ArbolAVL {
 
   public boolean insertarAux(Nodo nodo, Comparable elemento) throws Exception {
     // precondicion: nodo no es nulo
-    boolean exito = true;
+    Nodo hijo;
     Comparable contenido = nodo.getElemento();
     if (elemento.equals(contenido)) {
       // reportar error: elemento repetido
-      exito = false;
+      hijo = null;
     } else {
-      exito = insertarNodo(nodo, elemento);
+      hijo = insertarNodo(nodo, elemento);
       if (exito) {
         nodo.recalcularAltura();
         if (nodo.noEstaBalanceado()) {
@@ -40,11 +40,11 @@ public class ArbolAVL {
         }
       }
     }
-    return exito;
+    return hijo;
   }
 
-  public boolean insertarNodo(Nodo nodo, Comparable elemento) throws Exception {
-    boolean exito = true;
+  public Object insertarNodo(Nodo nodo, Comparable elemento) throws Exception {
+    Object hijo;
     Comparable contenido = nodo.getElemento();
     Nodo izquierdo = nodo.getIzquierdo();
     Nodo derecho = nodo.getDerecho();
@@ -54,15 +54,17 @@ public class ArbolAVL {
       if (izquierdo == null)
         nodo.setIzquierdo(new Nodo(elemento));
       else
-        exito = insertarAux(izquierdo, elemento);
+        hijo = insertarAux(izquierdo, elemento);
+      nodo.setIzquierdo(hijo);
     } else {
       // Si tiene HD baja a la derecha, sino agrega elemento
       if (derecho == null)
         nodo.setDerecho(new Nodo(elemento));
       else
-        exito = insertarAux(derecho, elemento);
+        hijo = insertarAux(derecho, elemento);
+      nodo.setDerecho(hijo);
     }
-    return exito;
+    return nodo;
   }
 
   public boolean eliminar(Comparable x) throws Exception {

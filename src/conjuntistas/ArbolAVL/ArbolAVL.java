@@ -52,9 +52,6 @@ public class ArbolAVL {
         nodo.recalcularAltura();
         if (nodo.noEstaBalanceado()) {
           balancear(nodo);
-          // Nodo padre = balancear(nodo);
-          // if (nodo == this.raiz)
-          //   this.raiz = padre;
         }
       }
     }

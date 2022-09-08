@@ -14,7 +14,7 @@ public class ArbolAVL {
     return this.raiz == null;
   }
 
-  public boolean insertar(Comparable elemento) {
+  public boolean insertar(Comparable elemento) throws Exception {
     boolean exito = true;
     if (this.raiz == null) {
       this.raiz = new Nodo(elemento);
@@ -24,7 +24,7 @@ public class ArbolAVL {
     return exito;
   }
 
-  public boolean insertarAux(Nodo nodo, Comparable elemento) {
+  public boolean insertarAux(Nodo nodo, Comparable elemento) throws Exception {
     // precondicion: nodo no es nulo
     boolean exito = true;
     Nodo izquierdo = nodo.getIzquierdo();
@@ -61,12 +61,12 @@ public class ArbolAVL {
     return exito;
   }
 
-  public boolean eliminar(Comparable x) {
+  public boolean eliminar(Comparable x) throws Exception {
     return eliminarAux(this.raiz, null, x);
   }
 
   // baja hasta encontrar el nodo
-  private boolean eliminarAux(Nodo nodo, Nodo padre, Comparable x) {
+  private boolean eliminarAux(Nodo nodo, Nodo padre, Comparable x) throws Exception {
     boolean exito = false;
     if (nodo != null) {
       Comparable elemento = nodo.getElemento();
@@ -164,7 +164,7 @@ public class ArbolAVL {
     }
   }
 
-  private Nodo balancear(Nodo nodo) {
+  private void balancear(Nodo nodo) throws Exception {
     Nodo izquierdo = nodo.getIzquierdo();
     Nodo derecho = nodo.getDerecho();
     int balance = nodo.getBalance();
@@ -178,7 +178,8 @@ public class ArbolAVL {
       System.out.println("balancear izquierda-derecha");
     else if (balance < 0 && balanceDer > 0)
       System.out.println("balancear derecha-izquierda");
-    return new Nodo(null);
+    else
+      throw new Exception("balance esta dando cualquier cosa");
   }
 
   private Nodo rotarIzquierda(Nodo nodo) {
@@ -289,7 +290,7 @@ public class ArbolAVL {
   }
 
   // utilidad, no prestar antencion
-  public void llenar(int[] num) {
+  public void llenar(int[] num) throws Exception {
     for (int n: num)
       this.insertar(n);
   }

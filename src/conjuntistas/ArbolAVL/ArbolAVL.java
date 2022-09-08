@@ -54,7 +54,7 @@ public class ArbolAVL {
           balancear(nodo);
           // Nodo padre = balancear(nodo);
           // if (nodo == this.raiz)
-            // this.raiz = padre;
+          //   this.raiz = padre;
         }
       }
     }
@@ -165,13 +165,14 @@ public class ArbolAVL {
   }
 
   private void balancear(Nodo nodo) throws Exception {
+    Nodo original = nodo;
     Nodo izquierdo = nodo.getIzquierdo();
     Nodo derecho = nodo.getDerecho();
     int balance = nodo.getBalance();
     int balanceIzq = izquierdo == null ? 0 : izquierdo.getBalance();
     int balanceDer = derecho == null ? 0 : derecho.getBalance();
     if (balance > 0 && balanceIzq >= 0)
-      System.out.println("balancear derecha");
+      nodo = rotarDerecha(nodo);
     else if (balance < 0 && balanceDer <= 0)
       System.out.println("balancear izquierda");
     else if (balance > 0 && balanceIzq < 0)
@@ -180,6 +181,8 @@ public class ArbolAVL {
       System.out.println("balancear derecha-izquierda");
     else
       throw new Exception("balance esta dando cualquier cosa");
+    if (original == this.raiz)
+      this.raiz = nodo;
   }
 
   private Nodo rotarIzquierda(Nodo nodo) {
@@ -197,15 +200,15 @@ public class ArbolAVL {
 
   private Nodo rotarDerecha(Nodo nodo) {
     // pivot
-    Nodo hijoIzquierdo = nodo.getIzquierdo();
+    Nodo izquierdo = nodo.getIzquierdo();
     // temporal
-    Nodo hijoDerecho = hijoIzquierdo.getDerecho();
-    hijoIzquierdo.setDerecho(nodo);
-    nodo.setIzquierdo(hijoDerecho);
+    Nodo derecho = izquierdo.getDerecho();
+    izquierdo.setDerecho(nodo);
+    nodo.setIzquierdo(derecho);
     // recalculo altura del nodo y su "hijo"
     nodo.recalcularAltura();
-    hijoIzquierdo.recalcularAltura();
-    return hijoIzquierdo;
+    izquierdo.recalcularAltura();
+    return izquierdo;
   }
 
   private Nodo rotarIzquierdaDerecha(Nodo nodo) {

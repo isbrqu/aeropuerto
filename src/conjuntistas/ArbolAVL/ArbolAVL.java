@@ -27,33 +27,40 @@ public class ArbolAVL {
   public boolean insertarAux(Nodo nodo, Comparable elemento) throws Exception {
     // precondicion: nodo no es nulo
     boolean exito = true;
-    Nodo izquierdo = nodo.getIzquierdo();
-    Nodo derecho = nodo.getDerecho();
     Comparable contenido = nodo.getElemento();
     if (elemento.equals(contenido)) {
       // reportar error: elemento repetido
       exito = false;
     } else {
-      // determina si elemento es menor o mayor que contenido
-      if (elemento.compareTo(contenido) < 0) {
-        // Si tiene HI baja a la izquierda, sino agrega elemento
-        if (izquierdo == null)
-          nodo.setIzquierdo(new Nodo(elemento));
-        else
-          exito = insertarAux(izquierdo, elemento);
-      } else {
-        // Si tiene HD baja a la derecha, sino agrega elemento
-        if (derecho == null)
-          nodo.setDerecho(new Nodo(elemento));
-        else
-          exito = insertarAux(derecho, elemento);
-      }
+      exito = insertarNodo(nodo, elemento);
       if (exito) {
         nodo.recalcularAltura();
         if (nodo.noEstaBalanceado()) {
           balancear(nodo);
         }
       }
+    }
+    return exito;
+  }
+
+  public boolean insertarNodo(Nodo nodo, Comparable elemento) throws Exception {
+    boolean exito = true;
+    Comparable contenido = nodo.getElemento();
+    Nodo izquierdo = nodo.getIzquierdo();
+    Nodo derecho = nodo.getDerecho();
+    // determina si elemento es menor o mayor que contenido
+    if (elemento.compareTo(contenido) < 0) {
+      // Si tiene HI baja a la izquierda, sino agrega elemento
+      if (izquierdo == null)
+        nodo.setIzquierdo(new Nodo(elemento));
+      else
+        exito = insertarAux(izquierdo, elemento);
+    } else {
+      // Si tiene HD baja a la derecha, sino agrega elemento
+      if (derecho == null)
+        nodo.setDerecho(new Nodo(elemento));
+      else
+        exito = insertarAux(derecho, elemento);
     }
     return exito;
   }

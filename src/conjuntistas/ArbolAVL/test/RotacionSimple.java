@@ -23,8 +23,8 @@ public class RotacionSimple {
     print(arbol);
   }
 
-  public static void derechaHijoIzquierdo() throws Exception {
-    print("TEST SET 2 - Rotacion derecha en hijo izquierdo");
+  public static void derechaHijoDerecho() throws Exception {
+    print("TEST SET 3 - Rotacion derecha en hijo derecho");
     ArbolAVL arbol = new ArbolAVL();
     int[] serie = {3, 2, 6, 5, 4};
     arbol.llenar(serie);

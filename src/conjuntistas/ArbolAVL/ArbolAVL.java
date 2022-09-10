@@ -15,36 +15,36 @@ public class ArbolAVL {
   }
 
   public boolean insertar(Comparable elemento) throws Exception {
-    boolean exito = true;
-    if (this.raiz == null) {
-      this.raiz = new Nodo(elemento);
-    } else {
-      exito = insertarAux(this.raiz, elemento);
-    }
+    Nodo hijo = insertarAux(this.raiz, elemento);
+    // hijo == null se pudo insertar y no hubo ratacion
+    // elemento != null se pudo insertar y hubo ratacion
+    // elemento == null no se pudo insertar y no hubo rotacion
+    boolean exito = (hijo == null || hijo.getElemento() != null);
     return exito;
   }
 
-  public boolean insertarAux(Nodo nodo, Comparable elemento) throws Exception {
-    // precondicion: nodo no es nulo
-    Nodo hijo;
-    Comparable contenido = nodo.getElemento();
-    if (elemento.equals(contenido)) {
-      // reportar error: elemento repetido
+  public Nodo insertarAux(Nodo nodo, Comparable elemento) throws Exception {
+    Nodo hijo = new Nodo(null);
+    if (this.raiz == null) {
+      this.raiz = new Nodo(elemento);
       hijo = null;
-    } else {
+    } else if (!elemento.equals(nodo.getElemento())) {
       hijo = insertarNodo(nodo, elemento);
-      if (exito) {
+      if (hijo == null || hijo.getElemento() != null) {
         nodo.recalcularAltura();
+        // en caso de balancear se reasignara el hijo en insertarNodo
         if (nodo.noEstaBalanceado()) {
-          balancear(nodo);
+          hijo = balancear(nodo);
+          if (nodo == this.raiz)
+            this.raiz = hijo;
         }
       }
     }
     return hijo;
   }
 
-  public Object insertarNodo(Nodo nodo, Comparable elemento) throws Exception {
-    Object hijo;
+  public Nodo insertarNodo(Nodo nodo, Comparable elemento) throws Exception {
+    Nodo hijo = null;
     Comparable contenido = nodo.getElemento();
     Nodo izquierdo = nodo.getIzquierdo();
     Nodo derecho = nodo.getDerecho();
@@ -55,14 +55,26 @@ public class ArbolAVL {
         nodo.setIzquierdo(new Nodo(elemento));
       else
         hijo = insertarAux(izquierdo, elemento);
-      nodo.setIzquierdo(hijo);
+      // verifica para actualizar el hijo
+      if (hijo != null) {
+        if (hijo.getElemento() != null)
+          nodo.setIzquierdo(hijo);
+        else
+          nodo = hijo;
+      }
     } else {
       // Si tiene HD baja a la derecha, sino agrega elemento
       if (derecho == null)
         nodo.setDerecho(new Nodo(elemento));
       else
         hijo = insertarAux(derecho, elemento);
-      nodo.setDerecho(hijo);
+      // verifica para actualizar el hijo
+      if (hijo != null) {
+        if (hijo.getElemento() != null)
+          nodo.setDerecho(hijo);
+        else
+          nodo = hijo;
+      }
     }
     return nodo;
   }
@@ -170,8 +182,7 @@ public class ArbolAVL {
     }
   }
 
-  private void balancear(Nodo nodo) throws Exception {
-    Nodo original = nodo;
+  private Nodo balancear(Nodo nodo) throws Exception {
     Nodo izquierdo = nodo.getIzquierdo();
     Nodo derecho = nodo.getDerecho();
     int balance = nodo.getBalance();
@@ -187,8 +198,7 @@ public class ArbolAVL {
       System.out.println("balancear derecha-izquierda");
     else
       throw new Exception("balance esta dando cualquier cosa");
-    if (original == this.raiz)
-      this.raiz = nodo;
+    return nodo;
   }
 
   private Nodo rotarIzquierda(Nodo nodo) {

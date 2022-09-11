@@ -191,7 +191,7 @@ public class ArbolAVL {
     if (balance > 0 && balanceIzq >= 0)
       nodo = rotarDerecha(nodo);
     else if (balance < 0 && balanceDer <= 0)
-      System.out.println("balancear izquierda");
+      nodo = rotarIzquierda(nodo);
     else if (balance > 0 && balanceIzq < 0)
       System.out.println("balancear izquierda-derecha");
     else if (balance < 0 && balanceDer > 0)

@@ -31,4 +31,27 @@ public class RotacionSimple {
     print(arbol);
   }
 
+  public static void izquierdaEnRaiz() throws Exception {
+    print("TEST SET 1 - Rotacion izquierda en raiz");
+    ArbolAVL arbol = new ArbolAVL();
+    int[] serie = {1, 3, 5};
+    arbol.llenar(serie);
+    print(arbol);
+  }
+
+  public static void izquierdaHijoIzquierdo() throws Exception {
+    print("TEST SET 2 - Rotacion izquierda en hijo izquierdo");
+    ArbolAVL arbol = new ArbolAVL();
+    int[] serie = {3, 2, 4, 5, 6};
+    arbol.llenar(serie);
+    print(arbol);
+  }
+
+  public static void izquierdaHijoDerecho() throws Exception {
+    print("TEST SET 3 - Rotacion izquierda en hijo derecho");
+    ArbolAVL arbol = new ArbolAVL();
+    int[] serie = {5, 2, 6, 3, 4};
+    arbol.llenar(serie);
+    print(arbol);
+  }
 }

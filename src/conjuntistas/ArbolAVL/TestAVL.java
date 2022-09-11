@@ -6,6 +6,7 @@ public class TestAVL {
   public static void main(String[] args) throws Exception {
     RotacionSimple.derechaEnRaiz();
     RotacionSimple.derechaHijoIzquierdo();
+    RotacionSimple.derechaHijoDerecho();
   }
 
 }

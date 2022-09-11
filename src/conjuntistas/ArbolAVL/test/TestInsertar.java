@@ -7,31 +7,13 @@ public class TestInsertar {
     System.out.println(object.toString());
   }
 
-  public static void repetidoEnRaiz() throws Exception {
-    print("TEST SET 1 - Repetido en raiz");
+  public static void repetidoIterativo() throws Exception {
+    print("TEST - repetido iterativo");
     ArbolAVL arbol = new ArbolAVL();
-    print("inserta 0: " + arbol.insertar(0));
-    print("inserta 0: " + arbol.insertar(0));
-    print(arbol);
-  }
-
-  public static void repetidoEnHijoDerechoRaiz() throws Exception {
-    print("TEST SET 2 - Repetido en hijo raiz derecho");
-    ArbolAVL arbol = new ArbolAVL();
-    print("inserta 2: " + arbol.insertar(2));
-    print("inserta 1: " + arbol.insertar(1));
-    print("inserta 3: " + arbol.insertar(3));
-    print("inserta 3: " + arbol.insertar(3));
-    print(arbol);
-  }
-
-  public static void repetidoEnHijoIzquierdoRaiz() throws Exception {
-    print("TEST SET 2 - Repetido en hijo raiz derecho");
-    ArbolAVL arbol = new ArbolAVL();
-    print("inserta 2: " + arbol.insertar(2));
-    print("inserta 1: " + arbol.insertar(1));
-    print("inserta 3: " + arbol.insertar(3));
-    print("inserta 4: " + arbol.insertar(2));
+    int[] serie = {4, 2, 6, 1, 3, 5, 7};
+    arbol.llenar(serie);
+    for (int num : serie)
+      System.out.println("inserta " + num + ": " + arbol.insertar(num));
     print(arbol);
   }
 

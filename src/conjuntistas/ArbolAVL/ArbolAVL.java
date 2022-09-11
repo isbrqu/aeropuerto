@@ -236,7 +236,7 @@ public class ArbolAVL {
   }
 
   private Nodo rotarDerechaIzquierda(Nodo nodo) {
-    Nodo derecho = rotarIzquierda(nodo.getderecho());
+    Nodo derecho = rotarDerecha(nodo.getDerecho());
     nodo.setDerecho(derecho);
     nodo = rotarIzquierda(nodo);
     return nodo;

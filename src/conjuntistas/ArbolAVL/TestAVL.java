@@ -6,9 +6,9 @@ import conjuntistas.ArbolAVL.test.TestInsertar;
 public class TestAVL {
 
   public static void main(String[] args) throws Exception {
-    RotacionDoble.izquierdaDerechaEnRaiz();
-    RotacionDoble.izquierdaDerechaEnHijoIzquierdo();
-    RotacionDoble.izquierdaDerechaEnHijoDerecho();
+    RotacionDoble.derechaIzquierdaEnRaiz();
+    RotacionDoble.derechaIzquierdaEnHijoIzquierdo();
+    RotacionDoble.derechaIzquierdaEnHijoDerecho();
   }
 
 }

@@ -193,11 +193,12 @@ public class ArbolAVL {
     else if (balance < 0 && balanceDer <= 0)
       nodo = rotarIzquierda(nodo);
     else if (balance > 0 && balanceIzq < 0)
-      System.out.println("balancear izquierda-derecha");
+      nodo = rotarIzquierdaDerecha(nodo);
     else if (balance < 0 && balanceDer > 0)
-      System.out.println("balancear derecha-izquierda");
+      nodo = rotarDerechaIzquierda(nodo);
     else
       throw new Exception("balance esta dando cualquier cosa");
+    // nodo debe siempre contener la referencia a un hijo balanceado
     return nodo;
   }
 
@@ -228,13 +229,17 @@ public class ArbolAVL {
   }
 
   private Nodo rotarIzquierdaDerecha(Nodo nodo) {
-    nodo.setIzquierdo(rotarIzquierda(nodo.getIzquierdo()));
-    return rotarDerecha(nodo);
+    Nodo izquierdo = rotarIzquierda(nodo.getIzquierdo());
+    nodo.setIzquierdo(izquierdo);
+    nodo = rotarDerecha(nodo);
+    return nodo;
   }
 
   private Nodo rotarDerechaIzquierda(Nodo nodo) {
-    nodo.setDerecho(rotarDerecha(nodo.getDerecho()));
-    return rotarIzquierda(nodo);
+    Nodo derecho = rotarIzquierda(nodo.getderecho());
+    nodo.setDerecho(derecho);
+    nodo = rotarIzquierda(nodo);
+    return nodo;
   }
 
   public Lista listar() {

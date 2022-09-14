@@ -10,6 +10,9 @@ public class TestAVL {
     TestEliminar.rotandoDerechaBalanceNeutroEnRaiz();
     TestEliminar.rotandoDerechaBalancePositivoEnRaiz();
     TestEliminar.rotandoDerechaBalanceNegativoEnRaiz();
+    TestEliminar.rotandoDerechaBalancePositivo();
+    TestEliminar.rotandoDerechaBalanceNegativo();
+    TestEliminar.rotandoDerechaBalanceNeutro();
   }
 
 }

@@ -99,16 +99,20 @@ public class ArbolAVL {
         exito = eliminarAux(nodo.getDerecho(), nodo, x);
       }
     }
-    // apendice balanceador
-    if (exito) {
-      // cuando no sea la raiz
-      if (padre != null)
-        padre.recalcularAltura();
-      // solo para el elemento que se borro
-      // nodo no es null por más que se borre
-      if (nodo != null) {
-        balancear(nodo);
-        nodo.recalcularAltura();
+    // si nodo fue borrado hay que asegurarse que
+    // nodo no es nulo para los demas casos a balancear
+    if (exito && nodo != null) {
+      nodo.recalcularAltura();
+      if (nodo.noEstaBalanceado()) {
+        Nodo hijo = balancear(nodo);
+        if (nodo == this.raiz) {
+          this.raiz = hijo;
+        } else {
+          if (padre.getIzquierdo() == nodo)
+            padre.setIzquierdo(hijo);
+          else
+            padre.setDerecho(hijo);
+        }
       }
     }
     return exito;

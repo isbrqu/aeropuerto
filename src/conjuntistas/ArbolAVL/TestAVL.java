@@ -7,7 +7,9 @@ import conjuntistas.ArbolAVL.test.TestEliminar;
 public class TestAVL {
 
   public static void main(String[] args) throws Exception {
-    TestEliminar.eliminarRotandoDerecha();
+    TestEliminar.rotandoDerechaBalanceNeutroEnRaiz();
+    TestEliminar.rotandoDerechaBalancePositivoEnRaiz();
+    TestEliminar.rotandoDerechaBalanceNegativoEnRaiz();
   }
 
 }

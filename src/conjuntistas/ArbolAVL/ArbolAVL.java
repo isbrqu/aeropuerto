@@ -342,4 +342,8 @@ public class ArbolAVL {
     return s;
   }
 
+  public void setRaiz(Nodo raiz) {
+    this.raiz = raiz;
+  }
+
 }

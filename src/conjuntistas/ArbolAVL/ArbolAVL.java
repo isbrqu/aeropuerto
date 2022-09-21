@@ -346,4 +346,17 @@ public class ArbolAVL {
     this.raiz = raiz;
   }
 
+  public void rellenarNodos() {
+    rellenarNodosAux(this.raiz, 0);
+  }
+
+  public int rellenarNodosAux(Nodo nodo, int i) {
+    if (nodo != null) {
+      i = rellenarNodosAux(nodo.getIzquierdo(), i);
+      nodo.setElemento(i);
+      i = rellenarNodosAux(nodo.getDerecho(), i + 1);
+    }
+    return i;
+  }
+
 }

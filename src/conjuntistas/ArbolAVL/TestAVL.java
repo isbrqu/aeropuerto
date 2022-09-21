@@ -11,6 +11,8 @@ public class TestAVL {
     Nodo raiz = CrearArbol.rotacionDerecha();
     ArbolAVL arbol = new ArbolAVL();
     arbol.setRaiz(raiz);
+    arbol.rellenarNodos();
+    System.out.println(arbol);
   }
 
 }

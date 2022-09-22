@@ -68,19 +68,25 @@ public class CrearArbol {
 
   public static Nodo rotacionMultiple(String[] patron, int altura) throws Exception {
     Nodo raiz = null;
+    Nodo izquierdo = null;
+    Nodo derecho = null;
     for (String rotacion : patron) {
       switch (rotacion) {
         case "RR":
-          raiz = rotacionDerecha();
+          raiz = inclinado(altura, 1);
           break;
         case "LR":
-          raiz = rotacionIzquierda();
+          raiz = inclinado(altura, -1);
           break;
         case "LRR":
-          raiz = rotacionIzquierdaDerecha();
+          izquierdo = inclinado(altura - 1, -1);
+          derecho = inclinado(altura - 2, 1);
+          raiz = new Nodo(null, izquierdo, derecho);
           break;
         case "RLR":
-          raiz = rotacionDerechaIzquierda();
+          izquierdo = inclinado(altura - 2, 1);
+          derecho = inclinado(altura - 1, 1);
+          raiz = new Nodo(null, izquierdo, derecho);
           break;
         case "-":
           raiz = neutro(altura);

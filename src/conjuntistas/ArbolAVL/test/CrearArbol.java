@@ -40,4 +40,16 @@ public class CrearArbol {
     return raiz;
   }
 
+
+  public static Nodo neutro(int altura) throws Exception {
+    Nodo raiz = new Nodo(null);
+    if (altura != 0) {
+      Nodo izquierdo = neutro(altura - 1);
+      Nodo derecho = neutro(altura - 1);
+      raiz.setIzquierdo(izquierdo);
+      raiz.setDerecho(derecho);
+    }
+    return raiz;
+  }
+
 }

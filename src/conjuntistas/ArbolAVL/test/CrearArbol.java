@@ -101,6 +101,27 @@ public class CrearArbol {
     return raiz;
   }
 
+  public static Nodo semiNeutro(Nodo hijo, int inclinacion) throws Exception {
+    // RLR
+    Nodo raiz = null;
+    Nodo izquierdo = null;
+    Nodo derecho = null;
+    if (hijo == null) {
+      raiz = (inclinacion == 1) ? inclinado(1, 1) : inclinado(1, -1);
+    } else if (inclinacion == 1) { 
+      int altura = hijo.getAltura();
+      izquierdo = inclinado(altura - 1, 1);
+      derecho = hijo;
+      raiz = new Nodo(null, izquierdo, derecho);
+    } else {
+      int altura = hijo.getAltura();
+      izquierdo = hijo;
+      derecho = inclinado(altura - 1, -1);
+      raiz = new Nodo(null, izquierdo, derecho);
+    }
+    return raiz;
+  }
+
   public static Nodo inclinado(int altura, int inclinacion) throws Exception {
     Nodo raiz = null;
     if (altura >= 0) {
@@ -147,6 +168,12 @@ public class CrearArbol {
           break;
         case "-":
           raiz = neutro(hijo, 0);
+          break;
+        case "L":
+          raiz = semiNeutro(hijo, 1);
+          break;
+        case "R":
+          raiz = semiNeutro(hijo, -1);
           break;
       }
       hijo = raiz;

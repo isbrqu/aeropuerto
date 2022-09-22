@@ -13,7 +13,7 @@ public class Nodo {
     this.izquierdo = izquierdo;
     this.derecho = derecho;
     this.altura = 0;
-    // recalcularAltura();
+    recalcularAltura();
   }
 
   public Nodo(Comparable elemento) {

@@ -51,6 +51,7 @@ public class CrearArbol {
       derecho = inclinado(altura + (inclinacion + 3) / -2, -1);
       raiz.setIzquierdo(izquierdo);
       raiz.setDerecho(derecho);
+      raiz.recalcularAltura();
     }
     return raiz;
   }

@@ -16,4 +16,12 @@ public class CrearArbol {
     return raiz;
   }
 
+  public static Nodo rotacionIzquierda() throws Exception {
+    // LR
+    Nodo izquierdo = new Nodo(null);
+    Nodo derecho = new Nodo(null, null, new Nodo(null));
+    Nodo raiz = new Nodo(null, izquierdo, derecho);
+    return raiz;
+  }
+
 }

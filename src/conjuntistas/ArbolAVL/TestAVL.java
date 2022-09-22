@@ -13,6 +13,8 @@ public class TestAVL {
     arbol.setRaiz(raiz);
     arbol.rellenarNodos();
     System.out.println(arbol);
+    arbol.eliminar(3);
+    System.out.println(arbol);
   }
 
 }

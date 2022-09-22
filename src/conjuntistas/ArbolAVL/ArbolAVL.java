@@ -355,6 +355,7 @@ public class ArbolAVL {
       i = rellenarNodosAux(nodo.getIzquierdo(), i);
       nodo.setElemento(i);
       i = rellenarNodosAux(nodo.getDerecho(), i + 1);
+      nodo.recalcularAltura();
     }
     return i;
   }

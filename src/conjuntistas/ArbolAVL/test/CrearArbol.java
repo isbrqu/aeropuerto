@@ -8,11 +8,20 @@ public class CrearArbol {
     System.out.println(object.toString());
   }
 
-  public static Nodo rotacionDerecha() throws Exception {
+  public static Nodo rotacionDerecha(Nodo hijo) throws Exception {
     // RR
-    Nodo izquierdo = new Nodo(null, new Nodo(null), null);
-    Nodo derecho = new Nodo(null);
-    Nodo raiz = new Nodo(null, izquierdo, derecho);
+    Nodo raiz = null;
+    if (hijo == null) {
+      raiz = inclinado(2, 1);
+    } else { 
+      raiz = new Nodo(null);
+      int altura = hijo.getAltura();
+      Nodo izquierdo = inclinado(altura + 1, 1);
+      Nodo derecho = hijo;
+      raiz.setIzquierdo(izquierdo);
+      raiz.setDerecho(derecho);
+      raiz.recalcularAltura();
+    }
     return raiz;
   }
 
@@ -71,10 +80,11 @@ public class CrearArbol {
     Nodo raiz = null;
     Nodo izquierdo = null;
     Nodo derecho = null;
+    Nodo hijo = null;
     for (String rotacion : patron) {
       switch (rotacion) {
         case "RR":
-          raiz = inclinado(altura, 1);
+          raiz = rotacionDerecha(hijo);
           break;
         case "LR":
           raiz = inclinado(altura, -1);
@@ -93,6 +103,7 @@ public class CrearArbol {
           raiz = neutro(altura);
           break;
       }
+      hijo = raiz;
     }
     return raiz;
   }

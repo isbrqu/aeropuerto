@@ -60,11 +60,21 @@ public class CrearArbol {
     return raiz;
   }
 
-  public static Nodo rotacionDerechaIzquierda() throws Exception {
+  public static Nodo rotacionDerechaIzquierda(Nodo hijo) throws Exception {
     // RLR
-    Nodo izquierdo = new Nodo(null);
-    Nodo derecho = new Nodo(null, new Nodo(null), null);
-    Nodo raiz = new Nodo(null, izquierdo, derecho);
+    Nodo raiz = null;
+    Nodo izquierdo = null;
+    Nodo derecho = null;
+    if (hijo == null) {
+      izquierdo = inclinado(0, -1);
+      derecho = inclinado(1, 1);
+      raiz = new Nodo(null, izquierdo, derecho);
+    } else { 
+      int altura = hijo.getAltura();
+      izquierdo = hijo;
+      derecho = inclinado(altura + 1, 1);
+      raiz = new Nodo(null, izquierdo, derecho);
+    }
     return raiz;
   }
 
@@ -112,9 +122,7 @@ public class CrearArbol {
           raiz = rotacionIzquierdaDerecha(hijo);
           break;
         case "RLR":
-          izquierdo = inclinado(altura - 2, 1);
-          derecho = inclinado(altura - 1, 1);
-          raiz = new Nodo(null, izquierdo, derecho);
+          raiz = rotacionDerechaIzquierda(hijo);
           break;
         case "-":
           raiz = neutro(altura);

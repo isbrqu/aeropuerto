@@ -53,7 +53,7 @@ public class CrearArbol {
       raiz = new Nodo(null, izquierdo, derecho);
     } else { 
       int altura = hijo.getAltura();
-      izquierdo = inclinado(altura, -1);
+      izquierdo = inclinado(altura + 1, -1);
       derecho = hijo;
       raiz = new Nodo(null, izquierdo, derecho);
     }

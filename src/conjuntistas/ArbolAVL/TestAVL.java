@@ -8,7 +8,7 @@ import conjuntistas.ArbolAVL.test.CrearArbol;
 public class TestAVL {
 
   public static void main(String[] args) throws Exception {
-    String[] patron = {"RLR", "LRR"};
+    String[] patron = {"RR", "-R", "RR"};
     Nodo raiz = CrearArbol.rotacionMultiple(patron, 2);
     ArbolAVL arbol = new ArbolAVL();
     arbol.setRaiz(raiz);

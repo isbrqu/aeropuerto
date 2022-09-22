@@ -40,6 +40,20 @@ public class CrearArbol {
     return raiz;
   }
 
+  public static Nodo inclinado(int altura, int inclinacion) throws Exception {
+    Nodo raiz = null;
+    if (altura >= 0) {
+      raiz = new Nodo(null);
+      Nodo izquierdo = null;
+      Nodo derecho = null;
+      // determinan si se debe restar -1 o -2 a la altura
+      izquierdo = inclinado(altura + (inclinacion - 3) / 2, 1);
+      derecho = inclinado(altura + (inclinacion + 3) / -2, -1);
+      raiz.setIzquierdo(izquierdo);
+      raiz.setDerecho(derecho);
+    }
+    return raiz;
+  }
 
   public static Nodo neutro(int altura) throws Exception {
     Nodo raiz = new Nodo(null);
@@ -48,6 +62,30 @@ public class CrearArbol {
       Nodo derecho = neutro(altura - 1);
       raiz.setIzquierdo(izquierdo);
       raiz.setDerecho(derecho);
+    }
+    return raiz;
+  }
+
+  public static Nodo rotacionMultiple(String[] patron, int altura) throws Exception {
+    Nodo raiz = null;
+    for (String rotacion : patron) {
+      switch (rotacion) {
+        case "RR":
+          raiz = rotacionDerecha();
+          break;
+        case "LR":
+          raiz = rotacionIzquierda();
+          break;
+        case "LRR":
+          raiz = rotacionIzquierdaDerecha();
+          break;
+        case "RLR":
+          raiz = rotacionDerechaIzquierda();
+          break;
+        case "-":
+          raiz = neutro(altura);
+          break;
+      }
     }
     return raiz;
   }

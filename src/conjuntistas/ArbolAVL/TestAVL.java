@@ -8,7 +8,7 @@ import conjuntistas.ArbolAVL.test.CrearArbol;
 public class TestAVL {
 
   public static void main(String[] args) throws Exception {
-    Nodo raiz = CrearArbol.neutro(3);
+    Nodo raiz = CrearArbol.inclinado(3, -1);
     ArbolAVL arbol = new ArbolAVL();
     arbol.setRaiz(raiz);
     arbol.rellenarNodos();

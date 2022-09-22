@@ -1,6 +1,8 @@
 package conjuntistas.ArbolAVL;
 
 import lineales.dinamicas.Lista;
+import lineales.dinamicas.Cola;
+import lineales.dinamicas.Pila;
 
 public class ArbolAVL {
 
@@ -347,7 +349,7 @@ public class ArbolAVL {
   }
 
   public void rellenarNodos() {
-    rellenarNodosAux(this.raiz, 0);
+    rellenarNodosAux(this.raiz, 1);
   }
 
   public int rellenarNodosAux(Nodo nodo, int i) {
@@ -358,6 +360,28 @@ public class ArbolAVL {
       nodo.recalcularAltura();
     }
     return i;
+  }
+
+  public Lista niveles() {
+    Cola cola = new Cola();
+    Pila pila = new Pila();
+    Lista lista = new Lista();
+    cola.poner(this.raiz);
+    Nodo nodo;
+    while (cola.obtenerFrente() != null) {
+      nodo = (Nodo) cola.obtenerFrente();
+      cola.sacar();
+      pila.apilar(nodo.getElemento());
+      if (nodo.getIzquierdo() != null)
+        cola.poner(nodo.getIzquierdo());
+      if (nodo.getDerecho() != null)
+        cola.poner(nodo.getDerecho());
+    }
+    while (pila.obtenerTope() != null) {
+      lista.insertar(pila.obtenerTope(), 1);
+      pila.desapilar();
+    }
+    return lista;
   }
 
 }

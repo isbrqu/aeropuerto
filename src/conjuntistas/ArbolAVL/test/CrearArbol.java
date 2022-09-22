@@ -84,23 +84,15 @@ public class CrearArbol {
       raiz = new Nodo(null);
       Nodo izquierdo = null;
       Nodo derecho = null;
-      // determinan si se debe restar -1 o -2 a la altura
-      izquierdo = inclinado(altura + (inclinacion - 3) / 2, 1);
-      derecho = inclinado(altura + (inclinacion + 3) / -2, -1);
-      raiz.setIzquierdo(izquierdo);
-      raiz.setDerecho(derecho);
-      raiz.recalcularAltura();
-    }
-    return raiz;
-  }
-
-  public static Nodo neutro(int altura) throws Exception {
-    Nodo raiz = new Nodo(null);
-    if (altura != 0) {
-      Nodo izquierdo = neutro(altura - 1);
-      Nodo derecho = neutro(altura - 1);
-      raiz.setIzquierdo(izquierdo);
-      raiz.setDerecho(derecho);
+      if (inclinacion == 0) {
+        izquierdo = inclinado(altura - 1, 0);
+        derecho = inclinado(altura - 1, 0);
+      } else {
+        // determinan si se debe restar -1 o -2 a la altura
+        izquierdo = inclinado(altura + (inclinacion - 3) / 2, 1);
+        derecho = inclinado(altura + (inclinacion + 3) / -2, -1);
+      }
+      raiz = new Nodo(null, izquierdo, derecho);
     }
     return raiz;
   }
@@ -125,7 +117,7 @@ public class CrearArbol {
           raiz = rotacionDerechaIzquierda(hijo);
           break;
         case "-":
-          raiz = neutro(altura);
+          raiz = inclinado(2, 0);
           break;
       }
       hijo = raiz;

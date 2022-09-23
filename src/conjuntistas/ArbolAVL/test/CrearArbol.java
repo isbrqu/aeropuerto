@@ -14,13 +14,10 @@ public class CrearArbol {
     if (hijo == null) {
       raiz = inclinado(2, 1);
     } else { 
-      raiz = new Nodo(null);
       int altura = hijo.getAltura();
       Nodo izquierdo = inclinado(altura + 1, 1);
       Nodo derecho = hijo;
-      raiz.setIzquierdo(izquierdo);
-      raiz.setDerecho(derecho);
-      raiz.recalcularAltura();
+      raiz = new Nodo(null, izquierdo, derecho);
     }
     return raiz;
   }
@@ -31,13 +28,10 @@ public class CrearArbol {
     if (hijo == null) {
       raiz = inclinado(2, -1);
     } else { 
-      raiz = new Nodo(null);
       int altura = hijo.getAltura();
       Nodo izquierdo = hijo;
       Nodo derecho = inclinado(altura + 1, -1);
-      raiz.setIzquierdo(izquierdo);
-      raiz.setDerecho(derecho);
-      raiz.recalcularAltura();
+      raiz = new Nodo(null, izquierdo, derecho);
     }
     return raiz;
   }

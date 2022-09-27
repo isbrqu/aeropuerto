@@ -135,7 +135,7 @@ public class CrearArbol {
     return raiz;
   }
 
-  public static Nodo rotacionMultiple(String[] patron, int altura) throws Exception {
+  public static Nodo rotacionMultiple(String[] patron) throws Exception {
     Nodo raiz = null;
     Nodo izquierdo = null;
     Nodo derecho = null;

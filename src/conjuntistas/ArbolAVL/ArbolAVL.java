@@ -154,13 +154,14 @@ public class ArbolAVL {
   private void eliminarConUnHijo(Nodo hijo, Nodo padre) {
     Nodo izquierdo = hijo.getIzquierdo();
     Nodo derecho = hijo.getDerecho();
+    Nodo nuevo = (izquierdo != null) ? izquierdo : derecho;
     if (padre == null) {
       // caso especial de la raiz con un hijo
       this.raiz = (izquierdo != null) ? izquierdo : derecho;
-    } else if (izquierdo != null) {
-      padre.setIzquierdo(izquierdo);
+    } else if (padre.getIzquierdo() == hijo) {
+      padre.setIzquierdo(nuevo);
     } else {
-      padre.setDerecho(derecho);
+      padre.setDerecho(nuevo);
     }
   }
 

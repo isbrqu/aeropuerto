@@ -1,19 +1,11 @@
 package conjuntistas.ArbolAVL;
 
-import lineales.dinamicas.Lista;
-import lineales.dinamicas.Cola;
-import lineales.dinamicas.Pila;
+import conjuntistas.ArbolBinario.ArbolBinario;
 
-public class ArbolAVL {
-
-  private Nodo raiz;
+public class ArbolAVL extends ArbolBinario {
 
   public ArbolAVL() {
-    this.raiz = null;
-  }
-
-  public boolean esVacio() {
-    return this.raiz == null;
+    super();
   }
 
   public boolean insertar(Comparable elemento) throws Exception {
@@ -85,8 +77,8 @@ public class ArbolAVL {
     return eliminarAux(this.raiz, null, x);
   }
 
-  // baja hasta encontrar el nodo
   private boolean eliminarAux(Nodo nodo, Nodo padre, Comparable x) throws Exception {
+    // baja hasta encontrar el nodo
     boolean exito = false;
     if (nodo != null) {
       Comparable elemento = nodo.getElemento();
@@ -120,8 +112,8 @@ public class ArbolAVL {
     return exito;
   }
 
-  // determina el tipo de eliminacion
   private boolean eliminarNodo(Nodo nodo, Nodo padre) {
+    // determina el tipo de eliminacion
     Nodo izquierdo = nodo.getIzquierdo();
     Nodo derecho = nodo.getDerecho();
     // determino el caso a eliminar
@@ -138,7 +130,6 @@ public class ArbolAVL {
     return true;
   }
 
-  // caso 1
   private void eliminarHoja(Nodo hijo, Nodo padre) {
     if (padre == null) {
       // caso especial un unico elemento
@@ -150,7 +141,6 @@ public class ArbolAVL {
     }
   }
 
-  // caso 2
   private void eliminarConUnHijo(Nodo hijo, Nodo padre) {
     Nodo izquierdo = hijo.getIzquierdo();
     Nodo derecho = hijo.getDerecho();
@@ -165,7 +155,6 @@ public class ArbolAVL {
     }
   }
 
-  // caso 3
   private void eliminarConDosHijos(Nodo nodo) {
     Nodo candidato = nodo.getDerecho();
     Nodo padreCandidato = nodo;
@@ -247,142 +236,6 @@ public class ArbolAVL {
     nodo.setDerecho(derecho);
     nodo = rotarIzquierda(nodo);
     return nodo;
-  }
-
-  public Lista listar() {
-    Lista lista = new Lista();
-    listarAux(this.raiz, lista);
-    return lista;
-  }
-
-  public void listarAux(Nodo nodo, Lista lista) {
-    if (nodo != null) {
-      listarAux(nodo.getDerecho(), lista);
-      lista.insertar(nodo.getElemento(), 1);
-      listarAux(nodo.getIzquierdo(), lista);
-    }
-  }
-
-  public boolean pertenece(Comparable x) {
-    boolean pertenece = false;
-    Nodo nodo = this.raiz;
-    Comparable elemento;
-    while (nodo != null && !pertenece) {
-      elemento = nodo.getElemento();
-      if (elemento.equals(x)) {
-        pertenece = true;
-      } else if (elemento.compareTo(x) > 0) {
-        nodo = nodo.getIzquierdo();
-      } else if (elemento.compareTo(x) < 0) {
-        nodo = nodo.getDerecho();
-      }
-    }
-    return pertenece;
-  }
-
-  public Comparable minimoElem() {
-    Comparable elemento = null;
-    Nodo nodo = this.raiz;
-    // bajada por la izquierda
-    while (nodo != null) {
-      elemento = nodo.getElemento();
-      nodo = nodo.getIzquierdo();
-    }
-    return elemento;
-  }
-
-  public Comparable maximoElem() {
-    Comparable elemento = null;
-    Nodo nodo = this.raiz;
-    // bajada por la derecha
-    while (nodo != null) {
-      elemento = nodo.getElemento();
-      nodo = nodo.getDerecho();
-    }
-    return elemento;
-  }
-
-  public Lista listarRango(int minimo, int maximo) {
-    Lista lista = new Lista();
-    listarRangoAux(this.raiz, lista, minimo, maximo);
-    return lista;
-  }
-
-  private void listarRangoAux(Nodo nodo, Lista lista, int minimo, int maximo) {
-    if (nodo != null) {
-      Comparable elemento = nodo.getElemento();
-      if (elemento.compareTo(maximo) < 0)
-        listarRangoAux(nodo.getDerecho(), lista, minimo, maximo);
-      if (elemento.compareTo(minimo) >= 0 && elemento.compareTo(maximo) <= 0)
-        lista.insertar(elemento, 1);
-      if (elemento.compareTo(minimo) > 0)
-        listarRangoAux(nodo.getIzquierdo(), lista, minimo, maximo);
-    }
-  }
-
-  // utilidad, no prestar antencion
-  public void llenar(int[] num) throws Exception {
-    for (int n: num)
-      this.insertar(n);
-  }
-
-  // copiado de arbol binario
-  public String toString() {
-    return (this.raiz != null) ? toStringAux(this.raiz, "") : "Arbol Vacio";
-  }
-
-  // copiado de arbol binario
-  private String toStringAux(Nodo nodo, String s) {
-    if (nodo != null) {
-      s += "\n" + nodo.getElemento() + "\t";
-      Nodo izquierdo = nodo.getIzquierdo();
-      Nodo derecho = nodo.getDerecho();
-      s += "HI: " + ((izquierdo != null) ? izquierdo.getElemento() : "-") + "\t";
-      s += "HD: " + ((derecho != null) ? derecho.getElemento() : "-");
-      s = toStringAux(nodo.getIzquierdo(), s);
-      s = toStringAux(nodo.getDerecho(), s);
-    }
-    return s;
-  }
-
-  public void setRaiz(Nodo raiz) {
-    this.raiz = raiz;
-  }
-
-  public void rellenarNodos() {
-    rellenarNodosAux(this.raiz, 1);
-  }
-
-  public int rellenarNodosAux(Nodo nodo, int i) {
-    if (nodo != null) {
-      i = rellenarNodosAux(nodo.getIzquierdo(), i);
-      nodo.setElemento(i);
-      i = rellenarNodosAux(nodo.getDerecho(), i + 1);
-      nodo.recalcularAltura();
-    }
-    return i;
-  }
-
-  public Lista niveles() {
-    Cola cola = new Cola();
-    Pila pila = new Pila();
-    Lista lista = new Lista();
-    cola.poner(this.raiz);
-    Nodo nodo;
-    while (cola.obtenerFrente() != null) {
-      nodo = (Nodo) cola.obtenerFrente();
-      cola.sacar();
-      pila.apilar(nodo.getElemento());
-      if (nodo.getIzquierdo() != null)
-        cola.poner(nodo.getIzquierdo());
-      if (nodo.getDerecho() != null)
-        cola.poner(nodo.getDerecho());
-    }
-    while (pila.obtenerTope() != null) {
-      lista.insertar(pila.obtenerTope(), 1);
-      pila.desapilar();
-    }
-    return lista;
   }
 
 }

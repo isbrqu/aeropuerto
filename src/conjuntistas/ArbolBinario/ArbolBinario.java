@@ -91,7 +91,9 @@ public abstract class ArbolBinario {
   }
 
   public String toString() {
-    return (this.raiz != null) ? toStringAux(this.raiz, "") : "Arbol Vacio";
+    // substring(1) elimina el primer salto de linea
+    return (this.raiz != null) ?
+      toStringAux(this.raiz, "").substring(1) : "Arbol Vacio";
   }
 
   private String toStringAux(Nodo nodo, String s) {

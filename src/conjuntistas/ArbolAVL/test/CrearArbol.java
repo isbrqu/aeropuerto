@@ -4,10 +4,6 @@ import conjuntistas.ArbolAVL.Nodo;
 
 public class CrearArbol {
 
-  public static void print(Object object) {
-    System.out.println(object.toString());
-  }
-
   public static Nodo rotacionDerecha(Nodo hijo) throws Exception {
     // RR
     Nodo raiz = null;

@@ -1,10 +1,15 @@
 package conjuntistas.ArbolAVL.test;
 import conjuntistas.ArbolAVL.ArbolAVL;
+import conjuntistas.ArbolAVL.test.RotacionSimple;
 
 public class TestInsertar {
 
   public static void print(Object object) {
     System.out.println(object.toString());
+  }
+
+  public static void execute() throws Exception {
+    RotacionSimple.callAll();
   }
 
   public static void repetidoIterativo() throws Exception {

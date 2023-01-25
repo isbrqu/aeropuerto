@@ -1,0 +1,44 @@
+package conjuntistas.ArbolAVL;
+import java.lang.Math;
+
+public class NodoAVL {
+
+  private int altura;
+
+  public Nodo(Comparable elemento, Nodo izquierdo, Nodo derecho) {
+    super(elemento, izquierdo, derecho);
+    this.altura = 0;
+    recalcularAltura();
+  }
+
+  public Nodo(Comparable elemento) {
+    this(elemento, null, null);
+  }
+
+  public int getAltura() {
+    return this.altura;
+  }
+
+  public void actualizarAltura() {
+    // en caso de no tener hijos se dará la cuenta -1 + 1 = 0
+    NodoAVL izquierdo = (NodoAVL) this.izquierdo;
+    NodoAVL derecho = (NodoAVL) this.derecho;
+    int altura1 = (izquierdo == null) ? -1 : izquierdo.altura;
+    int altura2 = (derecho == null) ? -1 : derecho.altura;
+    this.altura = Math.max(altura1, altura2) + 1;
+  }
+
+  public int getBalance() {
+    NodoAVL izquierdo = (NodoAVL) this.izquierdo;
+    NodoAVL derecho = (NodoAVL) this.derecho;
+    int altura1 = (izquierdo == null) ? -1 : izquierdo.altura;
+    int altura2 = (derecho == null) ? -1 : derecho.altura;
+    int balance = altura1 - alturad2;
+    return balance;
+  }
+
+  public boolean noEstaBalanceado() {
+    return Math.abs(getBalance()) > 1;
+  }
+
+}

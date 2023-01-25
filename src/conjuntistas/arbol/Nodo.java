@@ -3,8 +3,8 @@ package conjuntistas.ArbolBB;
 public class Nodo {
 
   private Comparable elemento;
-  private Nodo izquierdo;
-  private Nodo derecho;
+  protected Nodo izquierdo;
+  protected Nodo derecho;
 
   public Nodo(Comparable elemento, Nodo izquierdo, Nodo derecho) {
     this.elemento = elemento;

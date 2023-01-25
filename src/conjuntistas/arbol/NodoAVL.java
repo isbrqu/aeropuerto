@@ -5,13 +5,13 @@ public class NodoAVL {
 
   private int altura;
 
-  public Nodo(Comparable elemento, Nodo izquierdo, Nodo derecho) {
+  public NodoAVL(Comparable elemento, Nodo izquierdo, Nodo derecho) {
     super(elemento, izquierdo, derecho);
     this.altura = 0;
     recalcularAltura();
   }
 
-  public Nodo(Comparable elemento) {
+  public NodoAVL(Comparable elemento) {
     this(elemento, null, null);
   }
 

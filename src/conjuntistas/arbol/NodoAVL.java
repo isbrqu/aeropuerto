@@ -10,7 +10,7 @@ public class NodoAVL extends Nodo {
   public NodoAVL(Comparable elemento, Nodo izquierdo, Nodo derecho) {
     super(elemento, izquierdo, derecho);
     this.altura = 0;
-    recalcularAltura();
+    actualizarAltura();
   }
 
   public NodoAVL(Comparable elemento) {
@@ -35,7 +35,7 @@ public class NodoAVL extends Nodo {
     NodoAVL derecho = (NodoAVL) this.derecho;
     int altura1 = (izquierdo == null) ? -1 : izquierdo.altura;
     int altura2 = (derecho == null) ? -1 : derecho.altura;
-    int balance = altura1 - alturad2;
+    int balance = altura1 - altura2;
     return balance;
   }
 

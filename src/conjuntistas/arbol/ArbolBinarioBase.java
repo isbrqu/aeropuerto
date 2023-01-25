@@ -64,7 +64,4 @@ public abstract class ArbolBinarioBase {
     return s;
   }
 
-  public abstract boolean insertar(Comparable<?> elemento)
-      throws Exception;
-
 }

@@ -1,19 +1,17 @@
-package conjuntistas.ArbolBinario;
+package conjuntistas.arbol;
 
-import conjuntistas.ArbolAVL.Nodo;
+import conjuntistas.arbol.Nodo;
 import lineales.dinamicas.Lista;
 import lineales.dinamicas.Cola;
 import lineales.dinamicas.Pila;
 
-public abstract class ArbolBinario {
+public abstract class ArbolBinarioBase {
 
   protected Nodo raiz;
 
   public ArbolBinario() {
     this.raiz = null;
   }
-
-  public abstract boolean insertar(Comparable elemento) throws Exception;
 
   public boolean esVacio() {
     return this.raiz == null;
@@ -153,5 +151,8 @@ public abstract class ArbolBinario {
     for (int n: num)
       this.insertar(n);
   }
+
+  public abstract boolean insertar(Comparable elemento) throws Exception;
+
 
 }

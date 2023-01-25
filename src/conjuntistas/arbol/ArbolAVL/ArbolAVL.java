@@ -179,6 +179,8 @@ public class ArbolAVL extends ArbolBinario {
   }
 
   private Nodo balancear(Nodo nodo) throws Exception {
+    // aquí se va a necesitar castear a NodoAVL al igual que en los
+    // rotar
     Nodo izquierdo = nodo.getIzquierdo();
     Nodo derecho = nodo.getDerecho();
     int balance = nodo.getBalance();

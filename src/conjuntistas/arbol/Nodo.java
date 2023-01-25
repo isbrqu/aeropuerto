@@ -1,4 +1,4 @@
-package conjuntistas.ArbolBB;
+package conjuntistas.arbol;
 
 public class Nodo {
 

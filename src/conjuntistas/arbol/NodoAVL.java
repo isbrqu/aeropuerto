@@ -1,7 +1,9 @@
-package conjuntistas.ArbolAVL;
-import java.lang.Math;
+package conjuntistas.arbol;
 
-public class NodoAVL {
+import java.lang.Math;
+import conjuntistas.arbol.Nodo;
+
+public class NodoAVL extends Nodo {
 
   private int altura;
 

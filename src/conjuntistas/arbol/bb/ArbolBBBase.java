@@ -47,20 +47,19 @@ public abstract class ArbolBBBase extends ArbolBinarioBase {
     }
   }
 
-  // caso 2
   protected void eliminarConUnHijo(Nodo hijo, Nodo padre) {
-    // determino el nodo que tiene que reemplazar al hijo
-    Nodo remplazo = (hijo.getIzquierdo() != null) ? hijo.getIzquierdo() : hijo.getDerecho();
+    Nodo izquierdo = hijo.getIzquierdo();
+    Nodo derecho = hijo.getDerecho();
+    Nodo nuevo = (izquierdo != null) ? izquierdo : derecho;
     if (padre == null) {
       // caso especial de la raiz con un hijo
-      this.raiz = remplazo;
+      this.raiz = (izquierdo != null) ? izquierdo : derecho;
     } else if (padre.getIzquierdo() == hijo) {
-      padre.setIzquierdo(remplazo);
+      padre.setIzquierdo(nuevo);
     } else {
-      padre.setDerecho(remplazo);
+      padre.setDerecho(nuevo);
     }
   }
-
   // caso 3
   protected void eliminarConDosHijos(Nodo nodo) {
     Nodo candidato = nodo.getDerecho();

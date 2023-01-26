@@ -1,6 +1,7 @@
-package conjuntistas.ArbolAVL;
+package conjuntistas.arbol.avl;
 
-import conjuntistas.ArbolBinario.ArbolBinario;
+import conjuntistas.arbol.bb.ArbolBBBase;
+import conjuntistas.arbol.bb.Nodo;
 
 public class ArbolAVL extends ArbolBinario {
 

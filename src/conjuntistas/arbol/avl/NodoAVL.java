@@ -8,13 +8,13 @@ public class NodoAVL extends Nodo {
 
   private int altura;
 
-  public NodoAVL(Comparable<?> elemento, Nodo izquierdo, Nodo derecho) {
+  public NodoAVL(Comparable elemento, Nodo izquierdo, Nodo derecho) {
     super(elemento, izquierdo, derecho);
     this.altura = 0;
     actualizarAltura();
   }
 
-  public NodoAVL(Comparable<?> elemento) {
+  public NodoAVL(Comparable elemento) {
     this(elemento, null, null);
   }
 

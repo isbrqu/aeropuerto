@@ -3,7 +3,8 @@ package conjuntistas.arbol.avl;
 import conjuntistas.arbol.bb.ArbolBBBase;
 import conjuntistas.arbol.bb.Nodo;
 
-public class ArbolAVL extends ArbolBinario {
+@SuppressWarnings({"rawtypes", "unchecked"})
+public class ArbolAVL extends ArbolBBBase {
 
   public ArbolAVL() {
     super();

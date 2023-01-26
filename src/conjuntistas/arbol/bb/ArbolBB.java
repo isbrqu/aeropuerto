@@ -1,6 +1,6 @@
-package conjuntistas.arbol.arbolbb;
+package conjuntistas.arbol.bb;
 
-import conjuntistas.arbol.Nodo;
+import conjuntistas.arbol.bb.Nodo;
 import lineales.dinamicas.Lista;
 
 public class ArbolBB extends ArbolBinarioBusquedaBase {

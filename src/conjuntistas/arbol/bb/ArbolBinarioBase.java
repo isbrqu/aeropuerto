@@ -1,6 +1,6 @@
-package conjuntistas.arbol;
+package conjuntistas.arbol.bb;
 
-import conjuntistas.arbol.Nodo;
+import conjuntistas.arbol.bb.Nodo;
 import lineales.dinamicas.Lista;
 import lineales.dinamicas.Cola;
 import lineales.dinamicas.Pila;

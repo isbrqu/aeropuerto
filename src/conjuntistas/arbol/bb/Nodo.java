@@ -2,25 +2,26 @@ package conjuntistas.arbol.bb;
 
 public class Nodo {
 
-  private Comparable<?> elemento;
+  private Comparable elemento;
+
   protected Nodo izquierdo;
   protected Nodo derecho;
 
-  public Nodo(Comparable<?> elemento, Nodo izquierdo, Nodo derecho) {
+  public Nodo(Comparable elemento, Nodo izquierdo, Nodo derecho) {
     this.elemento = elemento;
     this.izquierdo = izquierdo;
     this.derecho = derecho;
   }
 
-  public Nodo(Comparable<?> elemento) {
+  public Nodo(Comparable elemento) {
     this(elemento, null, null);
   }
 
-  public Comparable<?> getElemento() {
+  public Comparable getElemento() {
     return this.elemento;
   }
 
-  public void setElemento(Comparable<?> elemento) {
+  public void setElemento(Comparable elemento) {
     this.elemento = elemento;
   }
 

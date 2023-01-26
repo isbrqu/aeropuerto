@@ -114,11 +114,12 @@ public class ArbolAVL extends ArbolBBBase {
     return exito;
   }
 
-  private Nodo balancear(Nodo nodo) throws Exception {
+  private Nodo balancear(NodoAVL nodo)
+  throws Exception {
     // aquí se va a necesitar castear a NodoAVL al igual que en los
     // rotar
-    Nodo izquierdo = nodo.getIzquierdo();
-    Nodo derecho = nodo.getDerecho();
+    NodoAVL izquierdo = (NodoAVL) nodo.getIzquierdo();
+    NodoAVL derecho = (NodoAVL) nodo.getDerecho();
     int balance = nodo.getBalance();
     int balanceIzq = izquierdo == null ? 0 : izquierdo.getBalance();
     int balanceDer = derecho == null ? 0 : derecho.getBalance();

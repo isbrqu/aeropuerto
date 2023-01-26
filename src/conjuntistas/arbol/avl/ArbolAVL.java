@@ -10,8 +10,9 @@ public class ArbolAVL extends ArbolBBBase {
     super();
   }
 
-  public boolean insertar(Comparable elemento) throws Exception {
-    Nodo hijo = insertarAux(this.raiz, elemento);
+  public boolean insertar(Comparable elemento)
+  throws Exception {
+    Nodo hijo = insertar(this.raiz, elemento);
     // hijo == null se pudo insertar y no hubo ratacion
     // elemento != null se pudo insertar y hubo ratacion
     // elemento == null no se pudo insertar y no hubo rotacion
@@ -19,19 +20,21 @@ public class ArbolAVL extends ArbolBBBase {
     return exito;
   }
 
-  public Nodo insertarAux(Nodo nodo, Comparable elemento) throws Exception {
-    Nodo hijo = new Nodo(null);
+  public Nodo insertar(Nodo nodo, Comparable elemento)
+  throws Exception {
+    Nodo hijo = new NodoAVL(null);
     if (this.raiz == null) {
-      this.raiz = new Nodo(elemento);
+      this.raiz = new NodoAVL(elemento);
       hijo = null;
     } else if (!elemento.equals(nodo.getElemento())) {
       hijo = insertarNodo(nodo, elemento);
       if (hijo == null || hijo.getElemento() != null) {
-        nodo.recalcularAltura();
+        NodoAVL actual = (NodoAVL) nodo;
+        actual.actualizarAltura();
         // en caso de balancear se reasignara el hijo en insertarNodo
-        if (nodo.noEstaBalanceado()) {
-          hijo = balancear(nodo);
-          if (nodo == this.raiz)
+        if (actual.noEstaBalanceado()) {
+          hijo = balancear(actual);
+          if (actual == this.raiz)
             this.raiz = hijo;
         }
       }
@@ -39,7 +42,8 @@ public class ArbolAVL extends ArbolBBBase {
     return hijo;
   }
 
-  public Nodo insertarNodo(Nodo nodo, Comparable elemento) throws Exception {
+  public Nodo insertarNodo(Nodo nodo, Comparable elemento)
+  throws Exception {
     Nodo hijo = null;
     Comparable contenido = nodo.getElemento();
     Nodo izquierdo = nodo.getIzquierdo();
@@ -48,9 +52,9 @@ public class ArbolAVL extends ArbolBBBase {
     if (elemento.compareTo(contenido) < 0) {
       // Si tiene HI baja a la izquierda, sino agrega elemento
       if (izquierdo == null)
-        nodo.setIzquierdo(new Nodo(elemento));
+        nodo.setIzquierdo(new NodoAVL(elemento));
       else
-        hijo = insertarAux(izquierdo, elemento);
+        hijo = insertar(izquierdo, elemento);
       // verifica para actualizar el hijo
       if (hijo != null) {
         if (hijo.getElemento() != null)
@@ -61,9 +65,9 @@ public class ArbolAVL extends ArbolBBBase {
     } else {
       // Si tiene HD baja a la derecha, sino agrega elemento
       if (derecho == null)
-        nodo.setDerecho(new Nodo(elemento));
+        nodo.setDerecho(new NodoAVL(elemento));
       else
-        hijo = insertarAux(derecho, elemento);
+        hijo = insertar(derecho, elemento);
       // verifica para actualizar el hijo
       if (hijo != null) {
         if (hijo.getElemento() != null)
@@ -75,11 +79,13 @@ public class ArbolAVL extends ArbolBBBase {
     return nodo;
   }
 
-  public boolean eliminar(Comparable x) throws Exception {
-    return eliminarAux(this.raiz, null, x);
+  public boolean eliminar(Comparable x)
+  throws Exception {
+    return eliminar(this.raiz, null, x);
   }
 
-  private boolean eliminarAux(Nodo nodo, Nodo padre, Comparable x) throws Exception {
+  private boolean eliminar(Nodo nodo, Nodo padre, Comparable x)
+  throws Exception {
     // baja hasta encontrar el nodo
     boolean exito = false;
     if (nodo != null) {
@@ -89,22 +95,23 @@ public class ArbolAVL extends ArbolBBBase {
         exito = eliminarNodo(nodo, padre);
       } else if (elemento.compareTo(x) > 0) {
         // desciende por la izquierda del arbol (es menor)
-        exito = eliminarAux(nodo.getIzquierdo(), nodo, x);
+        exito = eliminar(nodo.getIzquierdo(), nodo, x);
       } else {
         // desciende por la derecha del arbol (es mayor)
-        exito = eliminarAux(nodo.getDerecho(), nodo, x);
+        exito = eliminar(nodo.getDerecho(), nodo, x);
       }
     }
     // si nodo fue borrado hay que asegurarse que
     // nodo no es nulo para los demas casos a balancear
     if (exito && nodo != null) {
-      nodo.recalcularAltura();
-      if (nodo.noEstaBalanceado()) {
-        Nodo hijo = balancear(nodo);
-        if (nodo == this.raiz) {
+      NodoAVL actual = (NodoAVL) nodo;
+      actual.actualizarAltura();
+      if (actual.noEstaBalanceado()) {
+        Nodo hijo = balancear(actual);
+        if (actual == this.raiz) {
           this.raiz = hijo;
         } else {
-          if (padre.getIzquierdo() == nodo)
+          if (padre.getIzquierdo() == actual)
             padre.setIzquierdo(hijo);
           else
             padre.setDerecho(hijo);

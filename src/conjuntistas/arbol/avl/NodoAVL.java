@@ -1,7 +1,7 @@
-package conjuntistas.arbol;
+package conjuntistas.arbol.avl;
 
 import java.lang.Math;
-import conjuntistas.arbol.Nodo;
+import conjuntistas.arbol.bb.Nodo;
 
 public class NodoAVL extends Nodo {
 

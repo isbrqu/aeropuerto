@@ -1,13 +1,14 @@
-package conjuntistas.arbol;
+package conjuntistas.arbol.bb;
 
-import conjuntistas.arbol.Nodo;
+import conjuntistas.arbol.bb.Nodo;
 import lineales.dinamicas.Lista;
 import lineales.dinamicas.Cola;
 import lineales.dinamicas.Pila;
 
-public abstract class ArbolBinarioBusquedaBase {
+@SuppressWarnings("rawtypes")
+public abstract class ArbolBBBase extends ArbolBinarioBase {
 
-  public ArbolBinarioBusquedaBase() {
+  public ArbolBBBase() {
     super();
   }
 

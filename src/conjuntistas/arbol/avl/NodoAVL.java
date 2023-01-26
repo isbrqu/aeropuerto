@@ -3,6 +3,7 @@ package conjuntistas.arbol.avl;
 import java.lang.Math;
 import conjuntistas.arbol.bb.Nodo;
 
+@SuppressWarnings("rawtypes")
 public class NodoAVL extends Nodo {
 
   private int altura;

@@ -1,5 +1,6 @@
 package conjuntistas.arbol.bb;
 
+@SuppressWarnings("rawtypes")
 public class Nodo {
 
   private Comparable elemento;

@@ -3,7 +3,8 @@ package conjuntistas.arbol.bb;
 import conjuntistas.arbol.bb.Nodo;
 import lineales.dinamicas.Lista;
 
-public class ArbolBB extends ArbolBinarioBusquedaBase {
+@SuppressWarnings({"rawtypes", "unchecked"})
+public class ArbolBB extends ArbolBBBase {
 
   public ArbolBB() {
     super();

@@ -47,6 +47,7 @@ public abstract class ArbolBBBase extends ArbolBinarioBase {
     }
   }
 
+  // caso 2
   protected void eliminarConUnHijo(Nodo hijo, Nodo padre) {
     Nodo izquierdo = hijo.getIzquierdo();
     Nodo derecho = hijo.getDerecho();
@@ -60,6 +61,7 @@ public abstract class ArbolBBBase extends ArbolBinarioBase {
       padre.setDerecho(nuevo);
     }
   }
+
   // caso 3
   protected void eliminarConDosHijos(Nodo nodo) {
     Nodo candidato = nodo.getDerecho();

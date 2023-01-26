@@ -144,41 +144,43 @@ public class ArbolAVL extends ArbolBBBase {
     return nodo;
   }
 
-  private Nodo rotarIzquierda(Nodo nodo) {
+  private NodoAVL rotarIzquierda(NodoAVL nodo) {
     // pivot
-    Nodo derecho = nodo.getDerecho();
+    NodoAVL derecho = (NodoAVL) nodo.getDerecho();
     // temporal
-    Nodo izquierdo = derecho.getIzquierdo();
+    NodoAVL izquierdo = (NodoAVL) derecho.getIzquierdo();
     derecho.setIzquierdo(nodo);
     nodo.setDerecho(izquierdo);
     // recalculo altura de nodo y su "hijo"
-    nodo.recalcularAltura();
-    derecho.recalcularAltura();
+    nodo.actualizarAltura();
+    derecho.actualizarAltura();
     return derecho;
   }
 
-  private Nodo rotarDerecha(Nodo nodo) {
+  private NodoAVL rotarDerecha(NodoAVL nodo) {
     // pivot
-    Nodo izquierdo = nodo.getIzquierdo();
+    NodoAVL izquierdo = (NodoAVL) nodo.getIzquierdo();
     // temporal
-    Nodo derecho = izquierdo.getDerecho();
+    NodoAVL derecho = (NodoAVL) izquierdo.getDerecho();
     izquierdo.setDerecho(nodo);
     nodo.setIzquierdo(derecho);
     // recalculo altura del nodo y su "hijo"
-    nodo.recalcularAltura();
-    izquierdo.recalcularAltura();
+    nodo.actualizarAltura();
+    izquierdo.actualizarAltura();
     return izquierdo;
   }
 
-  private Nodo rotarIzquierdaDerecha(Nodo nodo) {
-    Nodo izquierdo = rotarIzquierda(nodo.getIzquierdo());
+  private NodoAVL rotarIzquierdaDerecha(NodoAVL nodo) {
+    NodoAVL izquierdoActual = (NodoAVL) nodo.getIzquierdo();
+    NodoAVL izquierdo = rotarIzquierda(izquierdoActual);
     nodo.setIzquierdo(izquierdo);
     nodo = rotarDerecha(nodo);
     return nodo;
   }
 
-  private Nodo rotarDerechaIzquierda(Nodo nodo) {
-    Nodo derecho = rotarDerecha(nodo.getDerecho());
+  private NodoAVL rotarDerechaIzquierda(NodoAVL nodo) {
+    NodoAVL derechoActual = (NodoAVL) nodo.getDerecho();
+    NodoAVL derecho = rotarDerecha(derechoActual);
     nodo.setDerecho(derecho);
     nodo = rotarIzquierda(nodo);
     return nodo;

@@ -8,14 +8,16 @@ public class TestArbolAVL {
 
   public static void main(String[] args) {
     try {
-      ArbolAVL a = new ArbolAVL();
-      Llenador l = new Llenador(a);
+      ArbolAVL arbol = new ArbolAVL();
+      Tree tree = new Tree(arbol);
       int[] num = {2, 3, 4, 1, 5, 6, 19, 19};
-      l.llenar(num);
-      System.out.println(a);
-      Tree b = new Tree(a);
-      b.drawTree();
-      b.save("out/test.svg");
+      int i = 1;
+      for (int n: num) {
+        arbol.insertar(n);
+        tree.drawTree();
+        tree.save("out/" + i + ".svg");
+        i++;
+      }
     } catch (Exception e) {
       e.printStackTrace();
     }

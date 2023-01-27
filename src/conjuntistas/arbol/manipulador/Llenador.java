@@ -19,7 +19,7 @@ public class Llenador {
   }
 
   /**
-   * method: rellena la estructura del árbol sin tener en cuenta los valor
+   * rellena la estructura del árbol sin tener en cuenta los valor
    * previos o si siquiera tiene.
    */
   public void rellenar() {
@@ -37,9 +37,9 @@ public class Llenador {
     return i;
   }
 
-  // public void llenar(int[] num) throws Exception {
-  //   for (int n: num)
-  //     this.insertar(n);
-  // }
+  public void llenar(int[] num) throws Exception {
+    for (int n: num)
+      this.arbol.insertar(n);
+  }
 
 }

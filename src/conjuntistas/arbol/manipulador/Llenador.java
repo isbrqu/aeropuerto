@@ -1,7 +1,7 @@
 package conjuntistas.arbol.manipulador;
 
 import conjuntistas.arbol.bb.Nodo;
-import conjuntistas.arbol.bb.ArbolBinarioBase;
+import conjuntistas.arbol.bb.ArbolBBBase;
 import conjuntistas.arbol.avl.NodoAVL;
 
 import lineales.dinamicas.Lista;
@@ -10,10 +10,10 @@ import lineales.dinamicas.Pila;
 
 public class Llenador {
 
-  private ArbolBinarioBase arbol;
+  private ArbolBBBase arbol;
   private Nodo raiz;
 
-  public Llenador(ArbolBinarioBase arbol) {
+  public Llenador(ArbolBBBase arbol) {
     this.arbol = arbol;
     this.raiz = arbol.getRaiz();
   }

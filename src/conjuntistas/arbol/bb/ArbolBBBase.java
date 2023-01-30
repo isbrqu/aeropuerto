@@ -84,4 +84,11 @@ public abstract class ArbolBBBase extends ArbolBinarioBase {
     }
   }
 
+  public void llenar(int[] numeros)
+  throws Exception {
+    for (int numero : numeros) {
+      this.insertar(numero);
+    }
+  }
+
 }

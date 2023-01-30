@@ -13,10 +13,10 @@ public abstract class ArbolBBBase extends ArbolBinarioBase {
   }
 
   public abstract boolean insertar(Comparable elemento)
-      throws Exception;
+  throws Exception;
 
   public abstract boolean eliminar(Comparable elemento)
-      throws Exception;
+  throws Exception;
 
   protected boolean eliminarNodo(Nodo nodo, Nodo padre) {
     Nodo izquierdo = nodo.getIzquierdo();

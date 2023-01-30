@@ -1,5 +1,6 @@
-package conjuntistas.ArbolAVL.test;
-import conjuntistas.ArbolAVL.ArbolAVL;
+package conjuntistas.arbol.avl.test;
+
+import conjuntistas.arbol.avl.ArbolAVL;
 import java.lang.reflect.Method;
 
 public class TestInsertar {
@@ -105,7 +106,9 @@ public class TestInsertar {
 
   public static void callAll() throws Exception {
     Method[] methods = TestInsertar.class.getDeclaredMethods();
-    String methodName = Thread.currentThread().getStackTrace()[1].getMethodName();
+    String methodName = Thread.currentThread()
+      .getStackTrace()[1]
+      .getMethodName();
     String name;
     for (Method method : methods) {
       name = method.getName();

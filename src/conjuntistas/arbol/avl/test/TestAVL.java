@@ -1,5 +1,4 @@
-package conjuntistas.ArbolAVL;
-import conjuntistas.ArbolAVL.test.TestInsertar;
+package conjuntistas.arbol.avl.test;
 
 public class TestAVL {
 

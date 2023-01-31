@@ -22,7 +22,7 @@ public class Llenador {
     rellenar(this.raiz, 1);
   }
 
-  private int rellenar(Nodo nodo, int i) {
+  public int rellenar(Nodo nodo, int i) {
     if (nodo != null) {
       i = rellenar(nodo.getIzquierdo(), i);
       nodo.setElemento(i);

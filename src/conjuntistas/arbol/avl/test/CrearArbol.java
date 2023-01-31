@@ -2,6 +2,7 @@ package conjuntistas.arbol.avl.test;
 
 import conjuntistas.arbol.avl.ArbolAVL;
 import conjuntistas.arbol.avl.NodoAVL;
+import conjuntistas.arbol.manipulador.Llenador;
 
 public class CrearArbol {
 
@@ -9,6 +10,8 @@ public class CrearArbol {
     NodoAVL raiz = rotacionMultiple(new String[] {"RR"});
     ArbolAVL arbol = new ArbolAVL();
     arbol.setRaiz(raiz);
+    Llenador llenador = new Llenador(arbol);
+    llenador.rellenar();
     System.out.println(arbol);
   }
 

@@ -1,14 +1,21 @@
-package conjuntistas.arbol;
+package conjuntistas.arbol.manipulador;
 
-import conjuntistas.arbol.Nodo;
+import conjuntistas.arbol.bb.Nodo;
+import conjuntistas.arbol.bb.ArbolBBBase;
+import conjuntistas.arbol.avl.NodoAVL;
+
 import lineales.dinamicas.Lista;
 import lineales.dinamicas.Cola;
 import lineales.dinamicas.Pila;
 
-public abstract class ArbolBinarioBusquedaBase {
+public class Listador {
 
-  public ArbolBinarioBusquedaBase() {
-    super();
+  private ArbolBBBase arbol;
+  private Nodo raiz;
+
+  public Listador(ArbolBBBase arbol) {
+    this.arbol = arbol;
+    this.raiz = arbol.getRaiz();
   }
 
   public boolean esVacio() {
@@ -29,45 +36,6 @@ public abstract class ArbolBinarioBusquedaBase {
     }
   }
 
-  public boolean pertenece(Comparable x) {
-    boolean pertenece = false;
-    Nodo nodo = this.raiz;
-    Comparable elemento;
-    while (nodo != null && !pertenece) {
-      elemento = nodo.getElemento();
-      if (elemento.equals(x)) {
-        pertenece = true;
-      } else if (elemento.compareTo(x) > 0) {
-        nodo = nodo.getIzquierdo();
-      } else if (elemento.compareTo(x) < 0) {
-        nodo = nodo.getDerecho();
-      }
-    }
-    return pertenece;
-  }
-
-  public Comparable minimoElem() {
-    Comparable elemento = null;
-    Nodo nodo = this.raiz;
-    // bajada por la izquierda
-    while (nodo != null) {
-      elemento = nodo.getElemento();
-      nodo = nodo.getIzquierdo();
-    }
-    return elemento;
-  }
-
-  public Comparable maximoElem() {
-    Comparable elemento = null;
-    Nodo nodo = this.raiz;
-    // bajada por la derecha
-    while (nodo != null) {
-      elemento = nodo.getElemento();
-      nodo = nodo.getDerecho();
-    }
-    return elemento;
-  }
-
   public Lista listarRango(int minimo, int maximo) {
     Lista lista = new Lista();
     listarRangoAux(this.raiz, lista, minimo, maximo);
@@ -84,29 +52,6 @@ public abstract class ArbolBinarioBusquedaBase {
       if (elemento.compareTo(minimo) > 0)
         listarRangoAux(nodo.getIzquierdo(), lista, minimo, maximo);
     }
-  }
-
-  public String toString() {
-    // substring(1) elimina el primer salto de linea
-    return (this.raiz != null) ?
-      toStringAux(this.raiz, "").substring(1) : "Arbol Vacio";
-  }
-
-  private String toStringAux(Nodo nodo, String s) {
-    if (nodo != null) {
-      s += "\n" + nodo.getElemento() + "\t";
-      Nodo izquierdo = nodo.getIzquierdo();
-      Nodo derecho = nodo.getDerecho();
-      s += "HI: " + ((izquierdo != null) ? izquierdo.getElemento() : "-") + "\t";
-      s += "HD: " + ((derecho != null) ? derecho.getElemento() : "-");
-      s = toStringAux(nodo.getIzquierdo(), s);
-      s = toStringAux(nodo.getDerecho(), s);
-    }
-    return s;
-  }
-
-  public void setRaiz(Nodo raiz) {
-    this.raiz = raiz;
   }
 
   public Lista niveles() {
@@ -130,65 +75,5 @@ public abstract class ArbolBinarioBusquedaBase {
     }
     return lista;
   }
-
-  public void rellenar() {
-    rellenarAux(this.raiz, 1);
-  }
-
-  public int rellenarAux(Nodo nodo, int i) {
-    if (nodo != null) {
-      i = rellenarAux(nodo.getIzquierdo(), i);
-      nodo.setElemento(i);
-      i = rellenarAux(nodo.getDerecho(), i + 1);
-      nodo.recalcularAltura();
-    }
-    return i;
-  }
-
-  public void llenar(int[] num) throws Exception {
-    for (int n: num)
-      this.insertar(n);
-  }
-
-  public boolean eliminarMinimo() {
-    boolean exito = false;
-    if (this.raiz != null) {
-      NodoABB padre = null;
-      NodoABB hijo = this.raiz;
-      while (hijo.getIzquierdo() != null) {
-        padre = hijo;
-        hijo = hijo.getIzquierdo();
-      }
-      if (padre == null) {
-        this.raiz = hijo.getDerecho();
-      } else {
-        padre.setIzquierdo(hijo.getDerecho());
-      }
-      exito = true;
-    }
-    return exito;
-  }
-
-  public boolean eliminarMaximo() {
-    boolean exito = false;
-    if (this.raiz != null) {
-      NodoABB padre = null;
-      NodoABB hijo = this.raiz;
-      while (hijo.getDerecho() != null) {
-        padre = hijo;
-        hijo = hijo.getDerecho();
-      }
-      if (padre == null) {
-        this.raiz = hijo.getIzquierdo();
-      } else {
-        padre.setDerecho(hijo.getIzquierdo());
-      }
-      exito = true;
-    }
-    return exito;
-  }
-
-  public abstract boolean insertar(Comparable elemento)
-      throws Exception;
 
 }

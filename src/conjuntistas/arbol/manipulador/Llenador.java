@@ -4,10 +4,6 @@ import conjuntistas.arbol.bb.Nodo;
 import conjuntistas.arbol.bb.ArbolBBBase;
 import conjuntistas.arbol.avl.NodoAVL;
 
-import lineales.dinamicas.Lista;
-import lineales.dinamicas.Cola;
-import lineales.dinamicas.Pila;
-
 public class Llenador {
 
   private ArbolBBBase arbol;

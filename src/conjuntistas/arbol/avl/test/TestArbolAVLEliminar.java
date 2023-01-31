@@ -8,7 +8,7 @@ public class TestArbolAVLEliminar {
   private static ArbolAVL arbol;
   private static int[] serie;
 
-  public static void rotandoDerechaBalanceNeutroEnRaiz()
+  public static void derechaBalanceNeutroEnRaiz()
       throws Exception {
       methodName = Thread.currentThread()
         .getStackTrace()[1]
@@ -21,7 +21,7 @@ public class TestArbolAVLEliminar {
       System.out.println(arbol);
   }
 
-  public static void rotandoDerechaBalancePositivoEnRaiz()
+  public static void derechaBalancePositivoEnRaiz()
       throws Exception {
       methodName = Thread.currentThread()
         .getStackTrace()[1]
@@ -34,7 +34,7 @@ public class TestArbolAVLEliminar {
       System.out.println(arbol);
   }
 
-  public static void rotandoDerechaBalanceNegativoEnRaiz()
+  public static void derechaBalanceNegativoEnRaiz()
       throws Exception {
       methodName = Thread.currentThread()
         .getStackTrace()[1]
@@ -47,7 +47,7 @@ public class TestArbolAVLEliminar {
       System.out.println(arbol);
   }
 
-  public static void rotandoDerechaBalancePositivo()
+  public static void derechaBalancePositivo()
       throws Exception {
       methodName = Thread.currentThread()
         .getStackTrace()[1]
@@ -60,7 +60,7 @@ public class TestArbolAVLEliminar {
       System.out.println(arbol);
   }
 
-  public static void rotandoDerechaBalanceNegativo()
+  public static void derechaBalanceNegativo()
       throws Exception {
       methodName = Thread.currentThread()
         .getStackTrace()[1]
@@ -73,7 +73,7 @@ public class TestArbolAVLEliminar {
       System.out.println(arbol);
   }
 
-  public static void rotandoDerechaBalanceNeutro()
+  public static void derechaBalanceNeutro()
       throws Exception {
       methodName = Thread.currentThread()
         .getStackTrace()[1]

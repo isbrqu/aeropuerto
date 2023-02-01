@@ -18,7 +18,6 @@ public class CrearArbol {
 
   public static void main(String[] args) throws Exception {
     LinkedList<Integer> contador = new LinkedList<Integer>();
-    String[] patron;
     int length = 4;
     int base = alfabeto.length;
     int i = 0;
@@ -26,23 +25,14 @@ public class CrearArbol {
     while (contador.size() <= length) {
       if (i == contador.size()) {
         contador.add(0);
-        if (contador.size() <= length) {
-          patron = new String[contador.size()];
-          for (int j = 0; j < contador.size(); j++) {
-            patron[j] = alfabeto[contador.get(j)];
-          }
-          System.out.println(Arrays.toString(patron));
-        }
+        if (contador.size() <= length)
+          generarPatron(contador);
         i = 0;
       } else {
         v = contador.get(i) + 1;
         if (v < base) {
           contador.set(i, v);
-          patron = new String[contador.size()];
-          for (int j = 0; j < contador.size(); j++) {
-            patron[j] = alfabeto[contador.get(j)];
-          }
-          System.out.println(Arrays.toString(patron));
+          generarPatron(contador);
           if (i > 0)
             i = 0;
         } else {
@@ -51,6 +41,14 @@ public class CrearArbol {
         }
       }
     }
+  }
+
+  public static void generarPatron(LinkedList<Integer> contador) {
+    String[] patron = new String[contador.size()];
+    for (int j = 0; j < contador.size(); j++) {
+      patron[j] = alfabeto[contador.get(j)];
+    }
+    System.out.println(Arrays.toString(patron));
   }
 
   public static void aux() throws Exception {

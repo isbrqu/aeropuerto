@@ -7,6 +7,7 @@ import conjuntistas.arbol.manipulador.Listador;
 import svgtree.Tree;
 
 import java.util.LinkedList;
+import java.util.Arrays;
 
 public class CrearArbol {
 
@@ -17,7 +18,7 @@ public class CrearArbol {
 
   public static void main(String[] args) throws Exception {
     LinkedList<Integer> contador = new LinkedList<Integer>();
-    LinkedList<String> patron = new LinkedList<String>();
+    String[] patron;
     int length = 4;
     int base = alfabeto.length;
     int i = 0;
@@ -26,22 +27,22 @@ public class CrearArbol {
       if (i == contador.size()) {
         contador.add(0);
         if (contador.size() <= length) {
-          for (int j : contador) {
-            patron.add(alfabeto[j]);
+          patron = new String[contador.size()];
+          for (int j = 0; j < contador.size(); j++) {
+            patron[j] = alfabeto[contador.get(j)];
           }
-          System.out.println(patron);
-          patron.clear();
+          System.out.println(Arrays.toString(patron));
         }
         i = 0;
       } else {
         v = contador.get(i) + 1;
         if (v < base) {
           contador.set(i, v);
-          for (int j : contador) {
-            patron.add(alfabeto[j]);
+          patron = new String[contador.size()];
+          for (int j = 0; j < contador.size(); j++) {
+            patron[j] = alfabeto[contador.get(j)];
           }
-          System.out.println(patron);
-          patron.clear();
+          System.out.println(Arrays.toString(patron));
           if (i > 0)
             i = 0;
         } else {

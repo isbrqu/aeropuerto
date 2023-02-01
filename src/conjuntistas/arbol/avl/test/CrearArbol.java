@@ -3,16 +3,68 @@ package conjuntistas.arbol.avl.test;
 import conjuntistas.arbol.avl.ArbolAVL;
 import conjuntistas.arbol.avl.NodoAVL;
 import conjuntistas.arbol.manipulador.Llenador;
+import conjuntistas.arbol.manipulador.Listador;
+import svgtree.Tree;
+
+import java.util.LinkedList;
 
 public class CrearArbol {
 
+  private static String[] alfabeto = {
+    "RR", "LR", "LRR", "RLR",
+    "-L", "-R", "-", "L", "R"
+  };
+
   public static void main(String[] args) throws Exception {
-    NodoAVL raiz = rotacionMultiple(new String[] {"RR"});
+    LinkedList<Integer> contador = new LinkedList<Integer>();
+    LinkedList<String> patron = new LinkedList<String>();
+    int length = 4;
+    int base = alfabeto.length;
+    int i = 0;
+    int v = 0;
+    while (contador.size() <= length) {
+      if (i == contador.size()) {
+        contador.add(0);
+        if (contador.size() <= length) {
+          for (int j : contador) {
+            patron.add(alfabeto[j]);
+          }
+          System.out.println(patron);
+          patron.clear();
+        }
+        i = 0;
+      } else {
+        v = contador.get(i) + 1;
+        if (v < base) {
+          contador.set(i, v);
+          for (int j : contador) {
+            patron.add(alfabeto[j]);
+          }
+          System.out.println(patron);
+          patron.clear();
+          if (i > 0)
+            i = 0;
+        } else {
+          contador.set(i, 0);
+          i++;
+        }
+      }
+    }
+  }
+
+  public static void aux() throws Exception {
+    String name = "RR";
+    NodoAVL raiz = rotacionMultiple(new String[] {name});
     ArbolAVL arbol = new ArbolAVL();
+    Tree tree = new Tree(arbol);
     arbol.setRaiz(raiz);
     Llenador llenador = new Llenador(arbol);
+    Listador listador = new Listador(arbol);
     llenador.rellenar();
     System.out.println(arbol);
+    System.out.println(listador.niveles());
+    tree.drawTree();
+    tree.save("out/" + name + ".svg");
   }
 
   public static NodoAVL rotacionDerecha(NodoAVL hijo)

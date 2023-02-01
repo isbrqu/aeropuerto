@@ -8,6 +8,7 @@ import lineales.dinamicas.Lista;
 import lineales.dinamicas.Cola;
 import lineales.dinamicas.Pila;
 
+@SuppressWarnings({"rawtypes", "unchecked"})
 public class Listador {
 
   private ArbolBBBase arbol;

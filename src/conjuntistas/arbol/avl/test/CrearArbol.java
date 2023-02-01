@@ -18,7 +18,7 @@ public class CrearArbol {
 
   public static void main(String[] args) throws Exception {
     LinkedList<Integer> contador = new LinkedList<Integer>();
-    int length = 4;
+    int length = 2;
     int base = alfabeto.length;
     int i = 0;
     int v = 0;
@@ -43,27 +43,35 @@ public class CrearArbol {
     }
   }
 
+  private static int countTree = 1;
+
   public static void generarPatron(LinkedList<Integer> contador) {
     String[] patron = new String[contador.size()];
     for (int j = 0; j < contador.size(); j++) {
       patron[j] = alfabeto[contador.get(j)];
     }
     System.out.println(Arrays.toString(patron));
+    crearArbol(patron);
   }
 
-  public static void aux() throws Exception {
-    String name = "RR";
-    NodoAVL raiz = rotacionMultiple(new String[] {name});
-    ArbolAVL arbol = new ArbolAVL();
-    Tree tree = new Tree(arbol);
-    arbol.setRaiz(raiz);
-    Llenador llenador = new Llenador(arbol);
-    Listador listador = new Listador(arbol);
-    llenador.rellenar();
-    System.out.println(arbol);
-    System.out.println(listador.niveles());
-    tree.drawTree();
-    tree.save("out/" + name + ".svg");
+  public static void crearArbol(String[] patron) {
+    try {
+      String variation = Arrays.toString(patron);
+      NodoAVL raiz = rotacionMultiple(patron);
+      ArbolAVL arbol = new ArbolAVL();
+      Tree tree = new Tree(arbol);
+      arbol.setRaiz(raiz);
+      Llenador llenador = new Llenador(arbol);
+      Listador listador = new Listador(arbol);
+      llenador.rellenar();
+      System.out.println(arbol);
+      System.out.println(listador.niveles());
+      tree.drawTree();
+      String name = String.format("out/%03d-%s.svg", countTree++, variation);
+      tree.save(name);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 
   public static NodoAVL rotacionDerecha(NodoAVL hijo)

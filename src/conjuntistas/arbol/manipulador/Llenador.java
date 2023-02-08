@@ -19,7 +19,7 @@ public class Llenador {
    * previos o si siquiera tiene.
    */
   public void rellenar() {
-    rellenar(this.raiz, 1);
+    rellenar(arbol.getRaiz(), 1);
   }
 
   public int rellenar(Nodo nodo, int i) {

@@ -1,20 +1,33 @@
 package conjuntistas.arbol.avl.test;
 
 import conjuntistas.arbol.avl.ArbolAVL;
+import conjuntistas.arbol.avl.NodoAVL;
+import conjuntistas.arbol.manipulador.Llenador;
 import conjuntistas.arbol.avl.test.Creator;
 import svgtree.Html;
+import java.util.Arrays;
+import test.Utils;
 
 public class TestArbolAVLVer {
 
   public static void main(String[] args) {
     try {
-      System.out.println("hola");
-      // ArbolAVL arbol = new ArbolAVL();
-      // String filename = "out/arbol.html";
-      // Html html = new Html();
-      // html.save(filename);
-      // startTree(filename);
-      // System.out.println(arbol);
+      ArbolAVL arbol = new ArbolAVL();
+      String[] alphabet = {"0", "1"};
+      Html html = new Html();
+      NodoAVL nodo;
+      Object[] variations = Utils.variations(alphabet, 5);
+      Llenador llenador = new Llenador(arbol);
+      for (Object variation : variations) {
+        String pattern = Arrays.toString((String[]) variation);
+        nodo = Creator.root(pattern);
+        arbol.setRaiz(nodo);
+        llenador.rellenar();
+        html.draw(arbol, pattern);
+      }
+      String filename = "out/arbol.html";
+      html.save(filename);
+      startTree(filename);
     } catch (Exception e) {
       e.printStackTrace();
     }

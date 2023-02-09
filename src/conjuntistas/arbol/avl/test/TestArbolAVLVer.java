@@ -16,14 +16,15 @@ public class TestArbolAVLVer {
       String[] alphabet = {"0", "1"};
       Html html = new Html();
       NodoAVL nodo;
-      Object[] variations = Utils.variations(alphabet, 5);
+      Object[] variations = Utils.variations(alphabet, 3);
       Llenador llenador = new Llenador(arbol);
       for (Object variation : variations) {
-        String pattern = Arrays.toString((String[]) variation);
-        nodo = Creator.root(pattern);
+        String[] instance = (String[]) variation;
+        nodo = Creator.sequence(instance);
         arbol.setRaiz(nodo);
         llenador.rellenar();
-        html.draw(arbol, pattern);
+        String name = Arrays.toString(instance);
+        html.draw(arbol, name);
       }
       String filename = "out/arbol.html";
       html.save(filename);

@@ -1,0 +1,111 @@
+---
+title: Aeropuerto
+---
+%%{ init: { "theme": "dark" } }%%
+classDiagram
+  direction RL
+  class Eliminador {
+    - arbol: ArbolBBBase
+    - raiz: Nodo
+    + Eliminador(ArbolBBBase arbol)
+    + eliminarMinimo(): boolean
+    + eliminarMaximo(): boolean
+  }
+  class Llenador {
+    - arbol: ArbolBBBase
+    - raiz: Nodo
+    + Llenador(ArbolBBBase arbol)
+    + rellenar(): void
+    + rellenar(Nodo nodo, int i): int
+    + llenar(int[] num): void
+  }
+  class Comprobador {
+    - arbol: ArbolBBBase
+    - raiz: Nodo
+    + Comprobador(ArbolBBBase arbol)
+    + esVacio(): boolean
+    + pertenece(Comparable x): boolean
+  }
+  class Listador {
+    - arbol: ArbolBBBase
+    - raiz: Nodo
+    + Listador(ArbolBBBase arbol)
+    + esVacio(): boolean
+    + listar(): Lista
+    + listarAux(Nodo nodo, Lista lista): void
+    + listarRango(int minimo, int maximo): Lista
+    + listarRangoAux(Nodo nodo, Lista lista, int minimo, int maximo): void
+    + niveles(): Lista
+  }
+  class Analizador {
+    - arbol: ArbolBBBase
+    - raiz: Nodo
+    + Analizador(ArbolBBBase arbol)
+    + minimoElem(): Comparable
+      + maximoElem(): Comparable
+    }
+    class ArbolBinarioBase {
+      # raiz: Nodo
+      + ArbolBinarioBase()
+      + getRaiz(): Nodo
+      + setRaiz(Nodo raiz): void
+      + esVacio(): boolean
+      + vaciar(): void
+      + listar(): Lista
+      + listarAux(Nodo nodo, Lista lista): void
+      + toString(): String
+      - toStringAux(Nodo nodo, String s): String
+    }
+    <<abstract>> ArbolBinarioBase
+    class Nodo {
+      - elemento: Comparable
+      # izquierdo: Nodo
+      # derecho: Nodo
+      + Nodo(Comparable elemento, Nodo izquierdo, Nodo derecho)
+      + Nodo(Comparable elemento)
+      + getElemento(): Comparable
+      + setElemento(Comparable elemento): void
+      + getIzquierdo(): Nodo
+      + setIzquierdo(Nodo izquierdo): void
+      + getDerecho(): Nodo
+      + setDerecho(Nodo derecho): void
+    }
+    class ArbolBB {
+      + ArbolBB()
+      + insertar(Comparable elemento): boolean
+      - insertar(Nodo nodo, Comparable elemento): boolean
+      + eliminar(Comparable x): boolean
+      - eliminar(Nodo nodo, Nodo padre, Comparable x): boolean
+    }
+    class NodoAVL {
+      - altura: int
+      + NodoAVL(Comparable elemento)
+      + NodoAVL(Comparable elemento, Nodo izquierdo, Nodo derecho)
+      + getAltura(): int
+      + actualizarAltura(): void
+      + getBalance(): int
+      + noEstaBalanceado(): boolean
+    }
+    class ArbolBBBase {
+      + ArbolBBBase()
+      + insertar(Comparable elemento)*: boolean
+      + eliminar(Comparable elemento)*: boolean
+      + eliminarNodo(Nodo nodo, Nodo padre): boolean
+      # eliminarHoja(Nodo hijo, Nodo padre): void
+      # eliminarConUnHijo(Nodo hijo, Nodo padre): void
+      # void eliminarConDosHijos(Nodo nodo): void
+      + llenar(int[] numeros): void
+    }
+    class ArbolAVL {
+      + ArbolAVL()
+      + insertar(Comparable elemento): boolean
+      + insertar(Nodo nodo, Comparable elemento): Nodo
+      + insertarNodo(Nodo nodo, Comparable elemento): Nodo
+      + eliminar(Comparable x): boolean
+      - eliminar(Nodo nodo, Nodo padre, Comparable x): boolean
+      - balancear(NodoAVL nodo): Nodo
+      - rotarIzquierda(NodoAVL nodo): NodoAVL
+      - rotarDerecha(NodoAVL nodo): NodoAVL
+      - rotarIzquierdaDerecha(NodoAVL nodo): NodoAVL
+      - rotarDerechaIzquierda(NodoAVL nodo): NodoAVL
+    }

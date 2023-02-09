@@ -1,0 +1,36 @@
+---
+title: "Conjuntista: Arbol Binario"
+---
+%%{ init: { "theme": "dark" } }%%
+classDiagram
+  direction RL
+
+class ArbolBin {
+  - NodoArbol raiz;
+  + ArbolBin()
+  + vaciar(): void 
+  + esVacio(): boolean 
+  + listarPreorden(): Lista 
+  - preordenAux(NodoArbol nodo, Lista lista): void 
+  + listarInorden(): Lista 
+  - inordenAux(NodoArbol nodo, Lista lista): void 
+  + listarPosorden(): Lista 
+  - posordenAux(NodoArbol nodo, Lista lista): void 
+  + niveles(): Lista 
+  + insertar(Object elementoNuevo, Object elementoPadre, char lugar): boolean 
+  - obtenerNodo(NodoArbol nodo, Object elemento): NodoArbol 
+  + altura(): int 
+  - alturaAux(NodoArbol nodo, int altura): int 
+  + nivel(Object elemento): int 
+  - nivelAux(Object elemento, NodoArbol nodo, int nivel): int 
+  + padre(Object elemento): Object 
+  - padreAux(NodoArbol nodo, Object elemento): Object 
+  + clone(): ArbolBin 
+  - cloneAux(NodoArbol orig): NodoArbol 
+  + toString(): String 
+  + toStringAux(NodoArbol nodo, String s): String 
+  + frontera(): Lista 
+  - fronteraAux(NodoArbol nodo, Lista lista): void 
+  + ancestros(Object elemento): Lista 
+  + ancestrosAux(NodoArbol nodo, Lista lista, Object elemento): boolean 
+}

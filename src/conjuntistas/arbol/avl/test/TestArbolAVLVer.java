@@ -59,12 +59,22 @@ public class TestArbolAVLVer {
     "(((1)(0))((1)10))",
     "(((1)(0))(1(10)))",
     "(((1)(0))((1)(10)))",
-  }
+  };
 
   public static void main(String[] args) {
     try {
+      for (String pattern : batch) {
+        System.out.println(pattern);
+      }
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void test1() {
+    try {
       ArbolAVL arbol = new ArbolAVL();
-      String[] alphabet = {"0", "1"};
+      String[] alphabet = {"(0)", "(1)"};
       Html html = new Html();
       NodoAVL nodo;
       Object[] variations = Utils.variations(alphabet, 3);

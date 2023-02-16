@@ -42,10 +42,17 @@ public class Creator {
     NodoAVL node = null;
     NodoAVL child = null;
     boolean flag = false;
-    char token = pattern.charAt(index);
     while (index < pattern.length()) {
+      char token = pattern.charAt(index);
       if (token == '0' || token == '1') {
-        flag = true;
+        if (flag) {
+          child = node;
+          node = (token == '0') ? null : new NodoAVL(null);
+          node = new NodoAVL(null, child, node);
+        } else {
+          node = (token == '0') ? null : new NodoAVL(null);
+          flag = true;
+        }
       } else if (token == '(') {
         child = root(pattern, index);
       } else if (token == ')') {

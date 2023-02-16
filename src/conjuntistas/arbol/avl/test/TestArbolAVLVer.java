@@ -61,11 +61,31 @@ public class TestArbolAVLVer {
     "(((1)(0))((1)(10)))",
   };
 
+  private static final String[] baseBatch = {
+    "0", "1"
+  };
+
   public static void main(String[] args) {
     try {
-      for (String pattern : batch) {
+      ArbolAVL arbol = new ArbolAVL();
+      Llenador llenador = new Llenador(arbol);
+      Html html = new Html();
+      Object[] variations = Utils.variations(baseBatch, 4);
+      for (Object variation : variations) {
+        String[] instance = (String[]) variation;
+        String pattern = "";
+        for (String character : instance) {
+          pattern += character;
+        }
         System.out.println(pattern);
+        NodoAVL root = Creator.root(pattern);
+        arbol.setRaiz(root);
+        llenador.rellenar();
+        html.draw(arbol, pattern);
       }
+      String filename = "out/arbol.html";
+      html.save(filename);
+      startTree(filename);
     } catch (Exception e) {
       e.printStackTrace();
     }

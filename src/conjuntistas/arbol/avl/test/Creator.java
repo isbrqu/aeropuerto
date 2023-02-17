@@ -6,6 +6,8 @@ import java.util.Arrays;
 
 public class Creator {
 
+  public static int index;
+
   public static void main(String[] args) {
     System.out.println("test");
   }
@@ -32,18 +34,18 @@ public class Creator {
     return root;
   }
 
-  public static NodoAVL root(String pattern) {
-    NodoAVL root = null;
-    Integer index = 0;
-    return root(pattern, index);
+  public static NodoAVL generate(String pattern) {
+    index = 0;
+    return root(pattern);
   }
 
-  public static NodoAVL root(String pattern, Integer index) {
+  public static NodoAVL root(String pattern) {
     NodoAVL node = null;
     NodoAVL child = null;
     boolean flag = false;
     while (index < pattern.length()) {
       char token = pattern.charAt(index);
+      System.out.println("token: " + token);
       if (token == '0' || token == '1') {
         if (flag) {
           child = node;
@@ -53,13 +55,22 @@ public class Creator {
           node = (token == '0') ? null : new NodoAVL(null);
           flag = true;
         }
+        index++;
       } else if (token == '(') {
-        child = root(pattern, index);
+        index++;
+        if (flag) {
+          child = node;
+          node = root(pattern);
+          node = new NodoAVL(null, child, node);
+        } else {
+          node = root(pattern);
+          flag = true;
+        }
       } else if (token == ')') {
+        System.out.println("token: " + token + " node: " + node);
         index++;
         break;
-      } 
-      index++;
+      }
     }
     return node;
   }

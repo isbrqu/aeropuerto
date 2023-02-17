@@ -10,7 +10,7 @@ import test.Utils;
 
 public class TestArbolAVLVer {
 
-  private static final String[] batch = {
+  private static final String[] batch0 = {
     "10(1(10))",
     "10((1)10)",
     "10((1)(10))",
@@ -61,6 +61,19 @@ public class TestArbolAVLVer {
     "(((1)(0))((1)(10)))",
   };
 
+  private static final String[] batch1 = {
+    "11",
+    "1(10)",
+    "(11)0",
+    "0(11)",
+    "10(1(10))",
+    "10((1)10)",
+    "((10)1)10",
+    "(11)(11)",
+    "10(((100))(1))",
+    "10((100)()(1))",
+  };
+
   private static final String[] baseBatch1 = {
     "0", "1"
   };
@@ -74,7 +87,7 @@ public class TestArbolAVLVer {
       ArbolAVL arbol = new ArbolAVL();
       Llenador llenador = new Llenador(arbol);
       Html html = new Html();
-      for (String pattern : batch) {
+      for (String pattern : batch1) {
         NodoAVL root = Creator.generate(pattern);
         arbol.setRaiz(root);
         llenador.rellenar();

@@ -61,8 +61,12 @@ public class TestArbolAVLVer {
     "(((1)(0))((1)(10)))",
   };
 
-  private static final String[] baseBatch = {
+  private static final String[] baseBatch1 = {
     "0", "1"
+  };
+
+  private static final String[] baseBatch2 = {
+    "(0)", "(1)"
   };
 
   public static void main(String[] args) {
@@ -70,7 +74,7 @@ public class TestArbolAVLVer {
       ArbolAVL arbol = new ArbolAVL();
       Llenador llenador = new Llenador(arbol);
       Html html = new Html();
-      Object[] variations = Utils.variations(baseBatch, 4);
+      Object[] variations = Utils.variations(baseBatch2, 4);
       for (Object variation : variations) {
         String[] instance = (String[]) variation;
         String pattern = "";
@@ -78,7 +82,7 @@ public class TestArbolAVLVer {
           pattern += character;
         }
         System.out.println(pattern);
-        NodoAVL root = Creator.root(pattern);
+        NodoAVL root = Creator.generate(pattern);
         arbol.setRaiz(root);
         llenador.rellenar();
         html.draw(arbol, pattern);

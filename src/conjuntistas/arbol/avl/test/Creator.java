@@ -35,11 +35,17 @@ public class Creator {
   }
 
   public static NodoAVL generate(String pattern) {
-    index = 0;
-    return root(pattern);
+    NodoAVL node = null;
+    try {
+      index = 0;
+      node = root(pattern);
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
+    return node;
   }
 
-  public static NodoAVL root(String pattern) {
+  public static NodoAVL root(String pattern) throws Exception {
     NodoAVL node = null;
     NodoAVL child = null;
     boolean flag = false;
@@ -66,6 +72,11 @@ public class Creator {
           flag = true;
         }
       } else if (token == ')') {
+        if (!flag) {
+          throw new Exception("No hay contenido en la posición "
+            + --index 
+            + " del patrón: " + pattern);
+        }
         index++;
         break;
       }

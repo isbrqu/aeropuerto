@@ -1,0 +1,57 @@
+---
+title: Arbol Binario de Busqueda Extendido
+---
+%%{ init: { "theme": "dark" } }%%
+classDiagram
+  direction RL
+class ArbolBBE {
+    + ArbolBBE()
+    + mejorCandidato(Comparable elem): Comparable 
+    + mejorCandidatoAux(NodoABB nodo, Comparable valor): Comparable 
+    + obtenerNodo(Comparable x): NodoABB 
+    + masNodosRango(Comparable minimo, Comparable maximo): int 
+    + contarNodoMayor(Comparable minimo): int 
+    - contarNodoMayorAux(NodoABB nodo, Comparable minimo): int 
+    + contarNodoMenor(Comparable maximo): int 
+    - contarNodoMenorAux(NodoABB nodo, Comparable maximo): int 
+    + contarNodoRango(Comparable minimo, Comparable maximo): int 
+    - contarNodoRangoAux(NodoABB nodo, Comparable minimo, Comparable maximo): int 
+    + contarHojasMayor(Comparable minimo): int 
+    - contarHojasMayorAux(NodoABB nodo, Comparable minimo): int 
+    + contarHojasMenor(Comparable minimo): int 
+    - contarHojasMenorAux(NodoABB nodo, Comparable minimo): int 
+    + contarHojasRango(Comparable minimo, Comparable maximo): int 
+    + contarHojasRangoAux(NodoABB nodo, Comparable minimo, Comparable maximo): int 
+    + verificarRango(Comparable minimo, Comparable maximo): boolean 
+    - verificarRangoAux(NodoABB nodo, int indice, Comparable minimo, Comparable maximo): int 
+    + listarMayor(Comparable x): Lista 
+    - listarMayorAux(NodoABB nodo, Lista lista, Comparable x): void 
+    + listarMenor(Comparable x): Lista 
+    - listarMenorAux(NodoABB nodo, Lista lista, Comparable x): void 
+    + fronteraMayor(Comparable x): Lista 
+    - fronteraMayorAux(NodoABB nodo, Lista lista, Comparable x): void 
+    + fronteraMenor(Comparable x): Lista 
+    - fronteraMenor(NodoABB nodo, Lista lista, Comparable x): void 
+    + fronteraRango(Comparable minimo, Comparable maximo): Lista 
+    - fronteraRangoAux(NodoABB nodo, Lista lista, Comparable minimo, Comparable maximo): void 
+    + eliminarMayores(Comparable x): boolean 
+    - eliminarMayoresAux(NodoABB nodo, NodoABB padre, Comparable x): boolean 
+    + eliminarMenores(Comparable x): boolean 
+    - eliminarMenoresAux(NodoABB nodo, NodoABB padre, Comparable x): boolean 
+    + eliminarRango(Comparable minimo, Comparable maximo): boolean 
+    - eliminarRangoAux(NodoABB nodo, NodoABB padre, Comparable minimo, Comparable maximo): boolean 
+    + eliminarFronteraMayor(Comparable minimo): boolean 
+    - eliminarFronteraMayorAux(NodoABB nodo, NodoABB padre, Comparable minimo): boolean 
+    + eliminarFronteraMenor(Comparable maximo): boolean 
+    - eliminarFronteraMenorAux(NodoABB nodo, NodoABB padre, Comparable maximo): boolean 
+    + eliminarFronteraRango(Comparable minimo, Comparable maximo): boolean 
+    - eliminarFronteraRangoAux(NodoABB nodo, NodoABB padre, Comparable minimo, Comparable maximo): boolean 
+    + cloneMayor(Comparable minimo): ArbolBB 
+    - cloneMayorAux(NodoABB nodo, Comparable minimo): NodoABB 
+    + cloneMenor(Comparable maximo): ArbolBB 
+    - cloneMenorAux(NodoABB nodo, Comparable maximo): NodoABB 
+    + cloneRange(Comparable minimo, Comparable maximo): ArbolBB 
+    - cloneRangeAux(NodoABB nodo, Comparable minimo, Comparable maximo): NodoABB 
+    + cloneInvertedRange(Comparable minimo, Comparable maximo): ArbolBB 
+    - cloneInvertedRangeAux(NodoABB nodo, Comparable minimo, Comparable maximo): NodoABB 
+}

@@ -13,10 +13,10 @@ public abstract class ArbolBBBase extends ArbolBinarioBase {
   }
 
   public abstract boolean insertar(Comparable elemento)
-      throws Exception;
+  throws Exception;
 
   public abstract boolean eliminar(Comparable elemento)
-      throws Exception;
+  throws Exception;
 
   protected boolean eliminarNodo(Nodo nodo, Nodo padre) {
     Nodo izquierdo = nodo.getIzquierdo();
@@ -83,6 +83,13 @@ public abstract class ArbolBBBase extends ArbolBinarioBase {
     } else {
       // caso comun, el candidato no es hijo del nodo
       padreCandidato.setIzquierdo(hijoCandidato);
+    }
+  }
+
+  public void llenar(int[] numeros)
+  throws Exception {
+    for (int numero : numeros) {
+      this.insertar(numero);
     }
   }
 

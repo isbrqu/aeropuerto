@@ -45,7 +45,7 @@ public class Creator {
     boolean flag = false;
     while (index < pattern.length()) {
       char token = pattern.charAt(index);
-      System.out.println("token: " + token);
+      // System.out.println("token: " + token);
       if (token == '0' || token == '1') {
         if (flag) {
           child = node;
@@ -67,7 +67,7 @@ public class Creator {
           flag = true;
         }
       } else if (token == ')') {
-        System.out.println("token: " + token + " node: " + node);
+        // System.out.println("token: " + token + " node: " + node);
         index++;
         break;
       }

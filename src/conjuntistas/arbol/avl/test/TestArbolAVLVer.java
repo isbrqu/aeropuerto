@@ -74,14 +74,7 @@ public class TestArbolAVLVer {
       ArbolAVL arbol = new ArbolAVL();
       Llenador llenador = new Llenador(arbol);
       Html html = new Html();
-      Object[] variations = Utils.variations(baseBatch2, 4);
-      for (Object variation : variations) {
-        String[] instance = (String[]) variation;
-        String pattern = "";
-        for (String character : instance) {
-          pattern += character;
-        }
-        System.out.println(pattern);
+      for (String pattern : batch) {
         NodoAVL root = Creator.generate(pattern);
         arbol.setRaiz(root);
         llenador.rellenar();

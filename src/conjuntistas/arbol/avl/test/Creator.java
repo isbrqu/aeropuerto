@@ -1,38 +1,10 @@
 package conjuntistas.arbol.avl.test;
 
 import conjuntistas.arbol.avl.NodoAVL;
-import lineales.dinamicas.Pila;
-import java.util.Arrays;
 
 public class Creator {
 
   public static int index;
-
-  public static void main(String[] args) {
-    System.out.println("test");
-  }
-  
-  public static NodoAVL base(String c) {
-    return (c.equals("0")) ? null : new NodoAVL(null);
-  }
-
-  public static NodoAVL sequence(String[] sequence) {
-    boolean flag = true;
-    NodoAVL root = null;
-    NodoAVL child = null;
-    String c;
-    for (int i = 0; i < sequence.length; i++) {
-      c = sequence[i];
-      if (flag) {
-        root = base(c);
-        flag = false;
-      } else {
-        child = root;
-        root = new NodoAVL(null, child, base(c));
-      }
-    }
-    return root;
-  }
 
   public static NodoAVL generate(String pattern) {
     NodoAVL node = null;
